@@ -1,0 +1,16 @@
+.button-generic {
+  background: linear-gradient(90deg, #777777, #444444);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 0 5px red;
+  box-shadow: 0 0 10px rgb(255, 178, 178);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-generic:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px red;
+}

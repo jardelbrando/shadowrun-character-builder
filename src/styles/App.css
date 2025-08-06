@@ -1,0 +1,36 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom right, #000000cc, #0a0a0acc);
+  z-index: 0;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: url('../assets/images/cenario-urbano-cyberpunk.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #e0f7ff;
+  position: relative;
+}
+
+.app {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title-home{
+  text-shadow: 2px 2px red;
+}
+
