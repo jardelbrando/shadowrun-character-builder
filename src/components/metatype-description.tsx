@@ -1,28 +1,100 @@
 import '../styles/metaType.css';
 import '../styles/global.css';
 import type {MetatypeCardProps} from '../stores/metatypes';
+import { objectInfos } from '../stores/objectInfos';
 
 export default function MetatypeDescription({ name, attributes, imageUrl, traits, onSelect }: MetatypeCardProps){
 
     return(
         <div className="metatype-card" onClick={onSelect}>
             <div className='metatype-status centralize-column-content'>
-                <h3>{name}</h3>
-                <ul className='centralize-column-content without-padding-margin'>
-                    <li><strong>Body:</strong> {attributes.body}</li>
-                    <li><strong>Agility:</strong> {attributes.agility}</li>
-                    <li><strong>Reaction:</strong> {attributes.reaction}</li>
-                    <li><strong>Strength:</strong> {attributes.strength}</li>
-                    <li><strong>Willpower:</strong> {attributes.willpower}</li>
-                    <li><strong>Logic:</strong> {attributes.logic}</li>
-                    <li><strong>Intuition:</strong> {attributes.intuition}</li>
-                    <li><strong>Charisma:</strong> {attributes.charisma}</li>
-                    <li><strong>Edge:</strong> {attributes.edge}</li>
-                </ul>
+                <h2>{name}</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{objectInfos.labels.attribute}</th>
+                            <th>{objectInfos.labels.startFinalValues}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.body}
+                            </td>
+                            <td>
+                                {attributes.body}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.agility}
+                            </td>
+                            <td>
+                                {attributes.agility}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.reaction}
+                            </td>
+                            <td>
+                                {attributes.reaction}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.strength}
+                            </td>
+                            <td>
+                                {attributes.strength}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.willpower}
+                            </td>
+                            <td>
+                                {attributes.willpower}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.logic}
+                            </td>
+                            <td>
+                                {attributes.logic}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.intuition}
+                            </td>
+                            <td>
+                                {attributes.intuition}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.charisma}
+                            </td>
+                            <td>
+                                {attributes.charisma}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {objectInfos.attributes.edge}
+                            </td>
+                            <td>
+                                {attributes.edge}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <p><strong>Traits:</strong> {traits.join(', ')}</p>
             </div>
-            <div className='metatype-img blue-neon-border'>
-                <img src={imageUrl}></img>
+            <div className='metatype-img'>
+                <img className='border-image' src={imageUrl}></img>
             </div>
             
             
