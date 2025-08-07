@@ -25,12 +25,36 @@ body {
   position: relative;
   z-index: 1;
   padding: 2rem;
-  max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
 .title-home{
-  text-shadow: 2px 2px red;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  text-shadow:
+    0 0 5px #ff8686,
+    0 0 10px #ff8686,
+    0 0 20px #ff3e3e,
+    0 0 40px #ff3e3e,
+    0 0 80px #ff3e3e;
+  animation: neonBlink 5s infinite;
 }
 
+/* Animação de falha de neon */
+@keyframes neonBlink {
+  0%, 88%, 92%, 100% {
+    opacity: 1;
+    text-shadow:
+      0 0 5px #ff003c,
+      0 0 10px #ff003c,
+      0 0 20px #ff003c,
+      0 0 40px #ff1a4f,
+      0 0 80px #ff3366;
+  }
+  89%, 91% {
+    text-shadow: none;
+  }
+}

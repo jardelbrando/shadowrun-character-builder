@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './styles/App.css';
 import ProgressBar from './components/progressBar';
 import AttributesStep from './steps/attributesStep';
-import MetatypeStep from './steps/metaTypeSetp';
+import MetatypeStep from './steps/metaTypeStep';
 import PriorityStep from './steps/priorityStep';
 
 function App() {

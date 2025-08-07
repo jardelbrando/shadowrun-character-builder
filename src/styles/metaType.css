@@ -1,0 +1,47 @@
+.metatype-buttons{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.step-card {
+  background: rgba(20, 20, 30, 0.65);
+  border: 2px solid #ff003c;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 700px;
+  box-shadow:
+    0 0 10px #ff003c55,
+    0 0 20px #ff003c33,
+    0 0 30px #ff003c22;
+  backdrop-filter: blur(6px);
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.step-card h2 {
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 0 6px #ff003c, 0 0 20px #ff3366;
+  margin-bottom: 1rem;
+}
+
+.step-card p {
+  font-size: 1rem;
+  color: #bbb;
+}
+
+.metatype-card {
+  background-color: rgba(20, 20, 30, 0.8);
+  border: 2px solid #00f2ff;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  color: #e0e0e0;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.metatype-card:hover {
+  box-shadow: 0 0 15px #00f2ff;
+  transform: scale(1.02);
+}
