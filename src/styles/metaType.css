@@ -8,7 +8,7 @@
   border-radius: 12px;
   padding: 2rem;
   margin: 2rem auto;
-  max-width: 700px;
+  max-width: 850px;
   box-shadow:
     0 0 10px #ff003c55,
     0 0 20px #ff003c33,
@@ -31,6 +31,11 @@
 }
 
 .metatype-card {
+  display: flex;
+  height: 700px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgba(20, 20, 30, 0.8);
   border: 2px solid #00f2ff;
   border-radius: 10px;
@@ -41,7 +46,36 @@
   cursor: pointer;
 }
 
+.metatype-card ul li {
+  list-style: none;
+  margin-bottom: 15px;
+}
+
 .metatype-card:hover {
   box-shadow: 0 0 15px #00f2ff;
   transform: scale(1.02);
+}
+
+.metatype-status{
+  padding: 30px;
+  width: 500px;
+}
+
+.metatype-img{
+  padding: 1rem;             /* define o espaço interno */
+  width: 500px;               /* ou uma largura fixa */
+  height: 675px;             /* ou altura que você desejar */
+  box-sizing: border-box;    /* para que padding seja incluído no tamanho total */
+  overflow: hidden;          /* evita qualquer estouro visual */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.metatype-img img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;       /* garante que a imagem se ajuste */
 }

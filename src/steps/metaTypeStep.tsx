@@ -2,7 +2,10 @@ import { useState } from 'react';
 import '../styles/global.css';
 import '../styles/genericStepStyle.css';
 import '../styles/metaType.css';
+import dwarveImg from '../assets/images/dwarve.JPG';
+import elfImg from '../assets/images/elf.JPG';
 import MetatypeDescription from '../components/metatype-description';
+import { metatypes } from '../stores/metatypes';
 
 type Props = {
         onNext: () => void;
@@ -11,47 +14,40 @@ type Props = {
 
 export default function MetatypeStep({ onNext, onBack }: Props){
 
-    const metatypes = [
-        {
-            name: 'Dwarven',
-            attributes: {
-            body: 3,
-            agility: 1,
-            reaction: 1,
-            strength: 3,
-            willpower: 2,
-            logic: 1,
-            intuition: 1,
-            charisma: 1 
-        // adicione o que precisar
-            },
-            traits: ['Adaptável','Sem penalidades']
-            
-        }
-    ];
+    const [selectedMetatype, setSelectedMetatype] = useState<string>('Dwarven');
+
+   
 
     return(
         <div className='step-card'>
             <div>
-                <h2>Metatipo</h2>
+                <h2>Metatype</h2>
                 <div>
-                    <p>Escolha um metatipo para seu personagem</p>
+                    <p>Select the desired metatype for your character</p>
                     <div>
-                        <button className='metatype-buttons'>Anão</button>
-                        <button className='metatype-buttons'>Elfo</button>
-                        <button className='metatype-buttons'>Humano</button>
-                        <button className='metatype-buttons'>Ork</button>
-                        <button className='metatype-buttons'>Troll</button>
+                        {metatypes.map((meta) => (
+                            <button
+                            key={meta.name}
+                            className='metatype-buttons'
+                            onClick={() => setSelectedMetatype(meta.name)}
+                            >
+                            {meta.name}
+                            </button>
+                        ))}
                     </div>
-                    {metatypes.map((meta) => (
-                    <MetatypeDescription
-                        key={meta.name}
-                        name={meta.name}
-                        attributes={meta.attributes}
-                        traits={meta.traits}
-                        onSelect={() => console.log(`Selecionou: ${meta.name}`)}
-                        />
-                    ))}
+                    {selectedMetatype && (() => {
+                        const selected = metatypes.find((meta) => meta.name === selectedMetatype);
+                        if (!selected) return null;
+
+                        return (
+                            <MetatypeDescription
+                            name={selected.name}
+                            attributes={selected.attributes}
+                            imageUrl={selected.imageUrl}
+                            traits={selected.traits}
+                            />
+                        );
+                        })()}
                 </div>
             </div>
             
