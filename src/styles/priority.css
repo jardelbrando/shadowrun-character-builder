@@ -1,0 +1,11 @@
+.magic-col {
+  width: 300px; /* define o tamanho fixo */
+  max-width: 300px;
+  white-space: normal; /* permite quebrar texto */
+}
+
+.alternative-text {
+    color: white;
+    text-shadow: 0 0 5px red;
+    
+}

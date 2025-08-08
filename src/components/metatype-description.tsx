@@ -12,7 +12,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                 <table>
                     <thead>
                         <tr>
-                            <th>{objectInfos.labels.attribute}</th>
+                            <th>{objectInfos.labels.attributes}</th>
                             <th>{objectInfos.labels.startFinalValues}</th>
                         </tr>
                     </thead>
