@@ -14,6 +14,9 @@ export const objectInfos = {
     },
     labels: {
         attribute: 'Attributes',
-        startFinalValues: 'Start Value / Max Value'
+        startFinalValues: 'Start Value / Max Value',
+        title: 'Shadowrun Character Builder',
+        homeText: 'This application aims to assist players of the tabletop RPG Shadowrun 5th edition in creating their characters on a non-profit basis.',
+        startButton: 'Begin',
     }
 }

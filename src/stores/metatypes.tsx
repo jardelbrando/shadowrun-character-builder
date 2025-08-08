@@ -17,7 +17,6 @@ export type MetatypeCardProps = {
         body: string;
         edge: string;
         essence: string;
-        
   };
   imageUrl: string;
   traits: string[];

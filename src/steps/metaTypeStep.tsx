@@ -2,10 +2,9 @@ import { useState } from 'react';
 import '../styles/global.css';
 import '../styles/genericStepStyle.css';
 import '../styles/metaType.css';
-import dwarveImg from '../assets/images/dwarve.JPG';
-import elfImg from '../assets/images/elf.JPG';
 import MetatypeDescription from '../components/metatype-description';
 import { metatypes } from '../stores/metatypes';
+import { useCharacterStore } from '../stores/useCharacterStore';
 
 type Props = {
         onNext: () => void;
@@ -14,9 +13,8 @@ type Props = {
 
 export default function MetatypeStep({ onNext, onBack }: Props){
 
-    const [selectedMetatype, setSelectedMetatype] = useState<string>('Dwarven');
-
-   
+    const setMetatype = useCharacterStore((state) => state.setMetatype);
+    const [selectedMetatype, setSelectedMetatype] = useState<string>('Dwarven');   
 
     return(
         <div className='step-card'>
@@ -29,7 +27,10 @@ export default function MetatypeStep({ onNext, onBack }: Props){
                             <button
                             key={meta.name}
                             className='metatype-buttons'
-                            onClick={() => setSelectedMetatype(meta.name)}
+                            onClick={() => {
+                                setSelectedMetatype(meta.name);
+                                setMetatype(meta);
+                            }}
                             >
                             {meta.name}
                             </button>
