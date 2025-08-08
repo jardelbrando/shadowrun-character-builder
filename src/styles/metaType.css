@@ -62,12 +62,11 @@
 }
 
 .metatype-img{
-  padding: 1rem;             /* define o espaço interno */
-  width: 400px;               /* ou uma largura fixa */
-  height: 675px;             /* ou altura que você desejar */
-  box-sizing: border-box;    /* para que padding seja incluído no tamanho total */
-  overflow: hidden;          /* evita qualquer estouro visual */
-  display: flex;
+  padding: 1rem;            
+  width: 400px;               
+  height: 675px;            
+  box-sizing: border-box;    
+  overflow: hidden;          
   align-items: center;
   justify-content: center;
 }
@@ -77,7 +76,7 @@
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: contain;       /* garante que a imagem se ajuste */
+  object-fit: contain;       
 }
 
 table{

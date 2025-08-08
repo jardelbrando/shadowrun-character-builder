@@ -9,13 +9,15 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: linear-gradient(to bottom right, #000000cc, #0a0a0acc);
-  z-index: 0;
+  background:
+    linear-gradient(to bottom right, #000000cc, #0a0a0acc),
+    url('../assets/images/cenario-urbano-cyberpunk.jpg') no-repeat center center / cover;
+  z-index: -1; /* atrás do conteúdo, mas ainda na frente do fundo da página */
 }
 
 body {
   font-family: 'Orbitron', sans-serif;
-  background: url('../assets/images/cenario-urbano-cyberpunk.jpg') no-repeat center center fixed;
+  background: none;
   background-size: cover;
   color: #e0f7ff;
   position: relative;
