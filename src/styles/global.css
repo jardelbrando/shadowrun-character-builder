@@ -34,5 +34,8 @@
   margin: 1rem 0;
   color: #e0e0e0;
   transition: 0.3s ease;
-  cursor: pointer
+}
+
+.select-neon{
+  background-color: #444444;
 }

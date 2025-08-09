@@ -5,6 +5,7 @@ import '../styles/priority.css';
 import { objectInfos } from '../stores/objectInfos';
 import { useCharacterStore } from "../stores/useCharacterStore";
 
+
 type Props = {
         onNext: () => void;
         onBack: () => void;
@@ -13,6 +14,40 @@ type Props = {
 export default function PriorityStep({ onNext , onBack}: Props){
 
     const metatype = useCharacterStore((state) => state.character.bio.metatype);
+    const [choices, setChoices] = useState({
+        metatype: {
+            label: "Metatype",
+            value: ""
+        },
+        attributes: {
+            label: "Attributes",
+            value: ""
+        },
+        magicOrRessonance: {
+            label: "Magic Or Ressonance",
+            value: ""
+        },
+        skills: {
+            label: "Skills",
+            value: ""
+        },
+        resources: {
+            label: "Resources",
+            value: ""
+        },
+    });
+
+    // Lista fixa de valores possíveis
+    const priorityOptions = ["A", "B", "C", "D", "E"];
+
+    const getAvailableOptions = (currentCategory: keyof typeof choices) => {
+        const used = Object.entries(choices)
+        .filter(([key]) => key !== currentCategory)
+        .map(([_, obj]) => obj.value)
+        .filter(v => v !== ""); // remove valores vazios
+
+        return priorityOptions.filter(p => !used.includes(p));
+    };
 
     return(
         <div>
@@ -69,7 +104,40 @@ export default function PriorityStep({ onNext , onBack}: Props){
             <div className='blue-neon-border'>
                 <p>Now chose the priority you want for each one of those aspects of your character</p>
                 <div>
-                    
+                    <table>
+                        <thead>
+                            <tr>
+                            <th><h3 className='alternative-text'>Categoria</h3></th>
+                            <th><h3 className='alternative-text'>Prioridade</h3></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(Object.keys(choices) as Array<keyof typeof choices>).map((category) => (
+                            <tr key={category}>
+                                <td>{choices[category].label}</td>
+                                <td>
+                                <select
+                                    className='blue-neon-border'
+                                    value={choices[category].value}
+                                    onChange={(e) =>
+                                        setChoices({ ...choices, [category]: {
+                                            ...choices[category],
+                                            value: e.target.value
+                                        }})
+                                    }
+                                >
+                                    <option value="">Select one Option</option>
+                                    {getAvailableOptions(category).map((p) => (
+                                    <option key={p} value={p}>
+                                        {p}
+                                    </option>
+                                    ))}
+                                </select>
+                                </td>
+                            </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div className="navigation-progress">
