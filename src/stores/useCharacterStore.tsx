@@ -57,6 +57,7 @@ type CharacterStore = {
   setMetatype: (metatype: MetatypeCardProps) => void;
   setAttribute: (attr: keyof Character["attributes"], value: number) => void;
   updateBio: (key: keyof Character["bio"], value: any) => void;
+  setPriority: (category: keyof Character["priorities"], value: string) => void;
   resetCharacter: () => void;
 };
 
@@ -84,6 +85,17 @@ export const useCharacterStore = create<CharacterStore>((set) => ({
       character: {
         ...state.character,
         bio: { ...state.character.bio, [key]: value }
+      }
+    })),
+
+  setPriority: (category, value) =>
+    set((state) => ({
+      character: {
+        ...state.character,
+        priorities: {
+          ...state.character.priorities,
+          [category]: value
+        }
       }
     })),
 

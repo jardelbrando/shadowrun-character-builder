@@ -14,6 +14,8 @@ type Props = {
 export default function PriorityStep({ onNext , onBack}: Props){
 
     const metatype = useCharacterStore((state) => state.character.bio.metatype);
+    const setPriority = useCharacterStore(state => state.setPriority);
+
     const [choices, setChoices] = useState({
         metatype: {
             label: "Metatype",
@@ -119,12 +121,14 @@ export default function PriorityStep({ onNext , onBack}: Props){
                                 <select
                                     className='blue-neon-border'
                                     value={choices[category].value}
-                                    onChange={(e) =>
+                                    onChange={(e) =>{
+                                        const newValue = e.target.value;
                                         setChoices({ ...choices, [category]: {
                                             ...choices[category],
-                                            value: e.target.value
-                                        }})
-                                    }
+                                            value: newValue
+                                        }});
+                                        setPriority(category, newValue);
+                                    }}
                                 >
                                     <option value="">Select one Option</option>
                                     {getAvailableOptions(category).map((p) => (

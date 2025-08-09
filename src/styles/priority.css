@@ -21,7 +21,6 @@ select{
 
 select:focus {
   outline: none;
-  border-color: #ff0000;
-  box-shadow: 0 0 8px #ff1c1c;
+  box-shadow: 0 0 8px #00f2ff;
 }
 
