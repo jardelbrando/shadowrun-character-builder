@@ -19,7 +19,7 @@ export default function PriorityStep({ onNext , onBack}: Props){
             <p>{objectInfos.labels.priority}</p>
             <h3>{objectInfos.labels.metatypeSelected} {metatype.name}</h3>
             <table>
-                <caption>{objectInfos.labels.priorityTable}</caption>
+                <caption><h2 className='alternative-text'>{objectInfos.labels.priorityTable}</h2></caption>
                 <thead>
                     <tr>
                         <th>
@@ -66,6 +66,12 @@ export default function PriorityStep({ onNext , onBack}: Props){
                     
                 </tbody>
             </table>
+            <div className='blue-neon-border'>
+                <p>Now chose the priority you want for each one of those aspects of your character</p>
+                <div>
+                    
+                </div>
+            </div>
             <div className="navigation-progress">
                 <button className="button-generic" onClick={onBack}>Voltar</button>
                 <button className="button-generic" onClick={onNext}>Próximo</button>

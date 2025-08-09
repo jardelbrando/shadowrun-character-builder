@@ -53,6 +53,13 @@ export type Character = {
         essence: number;
         magic: number;
     };
+    priorities:{
+        metatype: string;
+        attributes: string;
+        magicOrRessonance: string;
+        skills: string;
+        resources: string;
+    };
     traits: string[];
     activeSkills: Skill[];
     knowlodgeSkills: Skill[];

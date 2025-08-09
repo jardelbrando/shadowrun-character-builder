@@ -32,6 +32,13 @@ const initialCharacter: Character = {
     essence: 0,
     magic: 0
   },
+  priorities:{
+    metatype: '',
+    attributes: '',
+    magicOrRessonance: '',
+    skills: '',
+    resources: '',
+  },
   traits: [],
   activeSkills: [],
   knowlodgeSkills: [],

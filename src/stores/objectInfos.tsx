@@ -81,6 +81,71 @@ export const objectInfos = {
             },
             skills: '38/5',
             resources: 275000
+        },
+        priorityC: {
+            priority: 'C',
+            metatype: {
+                human: 5,
+                elf: 3,
+                dwarve: 1,
+                ork: 0
+            },
+            attributes: 16,
+            magicOrRessonance:{
+                mageOrAdept: {
+                    title: 'Mage or Adept',
+                    description: 'Magic 3, 5 spells'
+                },
+                technomancer: {
+                    title: 'Technomancer',
+                    description: 'Ressonance 3, 1 complex form'
+                },
+                adept: {
+                    title: 'Adept',
+                    description: 'Magic 4, one active skill rating 2'
+                },
+                aspectMage: {
+                    title: 'Aspect Mage',
+                    description: 'Magic 3, one magic skill group rating 2'
+                }                
+            },
+            skills: '28/2',
+            resources: 140000
+        },
+        priorityD: {
+            priority: 'D',
+            metatype: {
+                human: 3,
+                elf: 0,
+            },
+            attributes: 14,
+            magicOrRessonance:{
+                adept: {
+                    title: 'Adept',
+                    description: 'Magic 2'
+                },
+                aspectMage: {
+                    title: 'Aspect Mage',
+                    description: 'Magic 2'
+                }                
+            },
+            skills: '22/0',
+            resources: 50000
+        },
+        priorityE: {
+            priority: 'E',
+            metatype: {
+                human: 1,
+            },
+            attributes: 12,
+            magicOrRessonance:{
+                none:{
+                    title: 'None',
+                    description: 'none'
+                }          
+            },
+            skills: '18/0',
+            resources: 6000
         }
     }
 }
