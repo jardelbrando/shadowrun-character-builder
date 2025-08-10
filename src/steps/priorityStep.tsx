@@ -39,6 +39,8 @@ export default function PriorityStep({ onNext , onBack}: Props){
         },
     });
 
+    const allPrioritiesSelected = Object.values(choices).every(choice => choice.value !== "");
+
     // Lista fixa de valores possíveis
     const priorityOptions = ["A", "B", "C", "D", "E"];
 
@@ -109,8 +111,8 @@ export default function PriorityStep({ onNext , onBack}: Props){
                     <table>
                         <thead>
                             <tr>
-                            <th><h3 className='alternative-text'>Categoria</h3></th>
-                            <th><h3 className='alternative-text'>Prioridade</h3></th>
+                            <th><h3 className='alternative-text'>{objectInfos.labels.category}</h3></th>
+                            <th><h3 className='alternative-text'>{objectInfos.labels.priority}</h3></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,7 +132,7 @@ export default function PriorityStep({ onNext , onBack}: Props){
                                         setPriority(category, newValue);
                                     }}
                                 >
-                                    <option value="">Select one Option</option>
+                                    <option value="">{objectInfos.labels.selectOption}</option>
                                     {getAvailableOptions(category).map((p) => (
                                     <option key={p} value={p}>
                                         {p}
@@ -146,7 +148,7 @@ export default function PriorityStep({ onNext , onBack}: Props){
             </div>
             <div className="navigation-progress">
                 <button className="button-generic" onClick={onBack}>Voltar</button>
-                <button className="button-generic" onClick={onNext}>Próximo</button>
+                <button className="button-generic" onClick={onNext} disabled={!allPrioritiesSelected}>Próximo</button>
             </div>
         </div>
     );

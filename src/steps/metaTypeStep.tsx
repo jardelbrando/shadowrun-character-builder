@@ -14,7 +14,7 @@ type Props = {
 export default function MetatypeStep({ onNext, onBack }: Props){
 
     const setMetatype = useCharacterStore((state) => state.setMetatype);
-    const [selectedMetatype, setSelectedMetatype] = useState<string>('Dwarven');   
+    const [selectedMetatype, setSelectedMetatype] = useState<string>();   
 
     return(
         <div className='step-card'>
@@ -54,7 +54,7 @@ export default function MetatypeStep({ onNext, onBack }: Props){
             
             <div className="navigation-progress">
                 <button className="button-generic" onClick={onBack}>Voltar</button>
-                <button className="button-generic" onClick={onNext}>Próximo</button>
+                <button className="button-generic" onClick={onNext} disabled={!selectedMetatype}>Próximo</button>
             </div>
         </div>
     );

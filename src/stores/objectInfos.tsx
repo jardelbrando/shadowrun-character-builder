@@ -25,6 +25,8 @@ export const objectInfos = {
         resources: 'Resources',
         priorityTable: 'Priority Table',
         metatypeSelected: 'Metatype selected: ',
+        category: "Category",
+        selectOption: "Select one option",
         categories: ["Attributes", "Metatype", "Magic or Ressonance", "Skills", "Resources", ""]
 
     },
