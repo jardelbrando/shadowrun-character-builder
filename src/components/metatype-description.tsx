@@ -22,7 +22,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.body}
                             </td>
                             <td>
-                                {attributes.body}
+                                {attributes.body.min} / {attributes.body.max}
                             </td>
                         </tr>
                         <tr>
@@ -30,7 +30,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.agility}
                             </td>
                             <td>
-                                {attributes.agility}
+                                {attributes.agility.min} / {attributes.agility.max}
                             </td>
                         </tr>
                         <tr>
@@ -38,7 +38,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.reaction}
                             </td>
                             <td>
-                                {attributes.reaction}
+                                {attributes.reaction.min} / {attributes.reaction.max}
                             </td>
                         </tr>
                         <tr>
@@ -46,7 +46,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.strength}
                             </td>
                             <td>
-                                {attributes.strength}
+                                {attributes.strength.min} / {attributes.strength.max}
                             </td>
                         </tr>
                         <tr>
@@ -54,7 +54,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.willpower}
                             </td>
                             <td>
-                                {attributes.willpower}
+                                {attributes.willpower.min} / {attributes.willpower.max}
                             </td>
                         </tr>
                         <tr>
@@ -62,7 +62,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.logic}
                             </td>
                             <td>
-                                {attributes.logic}
+                                {attributes.logic.min} / {attributes.logic.max}
                             </td>
                         </tr>
                         <tr>
@@ -70,7 +70,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.intuition}
                             </td>
                             <td>
-                                {attributes.intuition}
+                                {attributes.intuition.min} / {attributes.intuition.max}
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +78,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.charisma}
                             </td>
                             <td>
-                                {attributes.charisma}
+                                {attributes.charisma.min} / {attributes.charisma.max}
                             </td>
                         </tr>
                         <tr>
@@ -86,7 +86,7 @@ export default function MetatypeDescription({ name, attributes, imageUrl, traits
                                 {objectInfos.attributes.edge}
                             </td>
                             <td>
-                                {attributes.edge}
+                                {attributes.edge.min} / {attributes.edge.max}
                             </td>
                         </tr>
                     </tbody>

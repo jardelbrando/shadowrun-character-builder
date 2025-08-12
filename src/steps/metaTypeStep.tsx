@@ -14,7 +14,8 @@ type Props = {
 export default function MetatypeStep({ onNext, onBack }: Props){
 
     const setMetatype = useCharacterStore((state) => state.setMetatype);
-    const [selectedMetatype, setSelectedMetatype] = useState<string>();   
+    const setMetatypeAttributes = useCharacterStore((state) => state.setAttribute);
+    const [selectedMetatype, setSelectedMetatype] = useState<string>("Human");   
 
     return(
         <div className='step-card'>
@@ -25,14 +26,24 @@ export default function MetatypeStep({ onNext, onBack }: Props){
                     <div>
                         {metatypes.map((meta) => (
                             <button
-                            key={meta.name}
-                            className='metatype-buttons'
-                            onClick={() => {
-                                setSelectedMetatype(meta.name);
-                                setMetatype(meta);
-                            }}
-                            >
-                            {meta.name}
+                                key={meta.name}
+                                className={`metatype-buttons ${selectedMetatype === meta.name ? 'selected' : ''}`}
+                                onClick={() => {
+                                    setSelectedMetatype(meta.name);
+                                    
+
+                                    Object.entries(meta.attributes).forEach(([key, value]) => {
+                                        if (typeof value === "object" && value !== null && "min" in value) {
+                                            setMetatypeAttributes(key as keyof typeof meta.attributes, value.min);
+                                        } else {
+                                            setMetatypeAttributes(key as keyof typeof meta.attributes, value as number);
+                                        }
+                                    });
+
+                                    setMetatype(meta);
+                                }}
+                                >
+                                {meta.name}
                             </button>
                         ))}
                     </div>

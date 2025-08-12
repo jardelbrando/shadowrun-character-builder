@@ -99,3 +99,8 @@ td, th{
   cursor: pointer
 }
 
+.metatype-buttons.selected {
+  outline: none;
+  border: 2px solid #00f2ff;
+  box-shadow: 0 0 6px #00f2ff, 0 0 12px #00f2ff66;
+}
