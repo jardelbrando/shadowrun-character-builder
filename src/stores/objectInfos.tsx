@@ -13,12 +13,15 @@ export const objectInfos = {
         magic: 'Magic'
     },
     labels: {
+        attMaxNote: 'Note: Only 1 attribute can reach the metatype maximum at the same time.',
         attributes: 'Attributes',
         startFinalValues: 'Start Value / Max Value',
+        currentValue: 'Current Value',
         title: 'Shadowrun Character Builder',
         homeText: 'This application aims to assist players of the tabletop RPG Shadowrun 5th edition in creating their characters on a non-profit basis.',
         startButton: 'Begin',
         priority: 'Priority',
+        priorityPoints: 'Priority Points',
         metatype: 'Metatype',
         magicOrRessonance: 'Magic or Ressonance',
         skills: 'Skills',
@@ -28,7 +31,10 @@ export const objectInfos = {
         category: "Category",
         selectOption: "Select one option",
         categories: ["Attributes", "Metatype", "Magic or Ressonance", "Skills", "Resources", ""],
-        rating: "Rating"
+        rating: "Rating",
+        usedPoints: "Used",
+        remaing: "Remaign"
+
 
     },
     priorityTable: {
