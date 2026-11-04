@@ -22,7 +22,7 @@ export function ConceptStep() {
           ))}
         </div>
       </Panel>
-      <Panel title="Nível de jogo">
+      <Panel title="Nível de jogo" term="concept:gameLevel">
         <div className="grid gap-3 md:grid-cols-3">
           {gameLevels.map((level) => (
             <Choice key={level.id} selected={character.gameLevel === level.id} onClick={() => edit((c) => void (c.gameLevel = level.id as typeof c.gameLevel))}>

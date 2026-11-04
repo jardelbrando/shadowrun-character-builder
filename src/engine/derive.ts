@@ -30,6 +30,7 @@ export const SPELL_KARMA = 5;
 export const COMPLEX_FORM_KARMA = 4;
 export const POWER_POINT_KARMA = 5;
 export const SPECIALIZATION_KARMA = 7;
+export const CREATION_SKILL_MAX = 6;
 
 /** Custo cumulativo de subir de `from` para `to`, a `multiplier` Carma por novo nível. */
 export function karmaCost(from: number, to: number, multiplier: number) {
@@ -132,6 +133,13 @@ export function freeSkillRating(c: Character, id: string) {
 export function skillRating(c: Character, id: string) {
   const entry = c.skills[id];
   return freeSkillRating(c, id) + (entry?.points ?? 0) + (entry?.karmaRanks ?? 0);
+}
+
+/** Nível máximo na criação: 6, ou 7 na perícia escolhida para Aptidão. */
+export function skillMax(c: Character, id: string) {
+  const aptitude = c.qualities.find((q) => q.id === 'aptidao');
+  const skill = byId(skills, id);
+  return aptitude && skill && aptitude.note.trim().toLowerCase() === skill.name.toLowerCase() ? CREATION_SKILL_MAX + 1 : CREATION_SKILL_MAX;
 }
 
 export function effectiveSkills(c: Character) {

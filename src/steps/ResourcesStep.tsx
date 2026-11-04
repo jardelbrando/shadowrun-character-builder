@@ -1,4 +1,5 @@
 import { CORE_ATTRIBUTES, ATTRIBUTE_NAMES, gearCategories, grades, lifestyles, programs, type CoreAttribute } from '../data';
+import { Term } from '../ui/Term';
 import { gearItemSchema, type GearItem } from '../schema/character';
 import { gearTotals } from '../engine/derive';
 import { newId, useCharacter } from '../store';
@@ -17,7 +18,7 @@ export function ResourcesStep() {
 
   return (
     <div className="space-y-4">
-      <Panel title="Fundos">
+      <Panel title="Fundos" term="stat:nuyen">
         <div className="grid gap-4 sm:grid-cols-4">
           <div>
             <div className="label">Disponível</div>
@@ -29,7 +30,7 @@ export function ResourcesStep() {
           </div>
           <div>
             <div className="label">Restante</div>
-            <div className={`font-mono text-lg ${nuyen.remaining < 0 ? 'text-magenta' : 'text-acid'}`}>{formatNuyen(nuyen.remaining)}</div>
+            <div className={`font-mono text-lg ${nuyen.remaining < 0 ? 'text-alert' : 'text-acid'}`}>{formatNuyen(nuyen.remaining)}</div>
           </div>
           <div className="flex flex-col gap-1">
             <span className="label">Carma em neoienes (2.000¥ cada)</span>
@@ -38,7 +39,7 @@ export function ResourcesStep() {
         </div>
       </Panel>
 
-      <Panel title="Estilo de vida">
+      <Panel title="Estilo de vida" term="gear:lifestyle">
         <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-6">
           {lifestyles.map((lifestyle) => (
             <Choice key={lifestyle.id} selected={character.lifestyle.id === lifestyle.id} onClick={() => edit((c) => void (c.lifestyle.id = lifestyle.id))}>
@@ -55,7 +56,7 @@ export function ResourcesStep() {
           <button type="button" className="btn btn-primary" onClick={rollDice}>Rolar</button>
           <div className="ml-auto text-right">
             <div className="label">Neoienes iniciais</div>
-            <div className="font-mono text-lg text-cyan">
+            <div className="font-mono text-lg text-accent">
               {formatNuyen(nuyen.starting)} <span className="text-xs text-mute">({nuyen.lifestyle.dice}D6 x {nuyen.lifestyle.multiplier} + {formatNuyen(nuyen.carried)})</span>
             </div>
           </div>
@@ -74,13 +75,13 @@ export function ResourcesStep() {
         </ul>
       </Panel>
 
-      <Panel title="Programas" aside={<span className="font-mono text-sm text-mute">{formatNuyen(nuyen.programCost)}</span>}>
+      <Panel title="Programas" term="gear:programs" aside={<span className="font-mono text-sm text-mute">{formatNuyen(nuyen.programCost)}</span>}>
         <ul className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
           {programs.map((program) => {
             const selected = character.programs.includes(program.id);
             return (
               <li key={program.id}>
-                <button type="button" aria-pressed={selected} className={`flex w-full cursor-pointer justify-between gap-2 border px-2 py-1 text-left ${selected ? 'border-cyan bg-cyan/10' : 'border-line hover:border-mute'}`} onClick={() => edit((c) => void (c.programs = selected ? c.programs.filter((id) => id !== program.id) : [...c.programs, program.id]))}>
+                <button type="button" aria-pressed={selected} className={`flex w-full cursor-pointer justify-between gap-2 border px-2 py-1 text-left ${selected ? 'border-accent bg-accent/10' : 'border-line hover:border-mute'}`} onClick={() => edit((c) => void (c.programs = selected ? c.programs.filter((id) => id !== program.id) : [...c.programs, program.id]))}>
                   <span>{program.name}</span>
                   <span className="font-mono text-xs text-mute">{program.kind === 'hacking' ? 'Hackear' : 'Comum'} · {program.cost}¥</span>
                 </button>
@@ -109,25 +110,26 @@ function GearRow({ item, index }: { item: GearItem; index: number }) {
       <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8">
         <NumberField label="Qtd." min={1} value={item.quantity} onChange={(value) => change((g) => void (g.quantity = value))} />
         <NumberField label="Custo ¥" value={item.unitCost} onChange={(value) => change((g) => void (g.unitCost = value))} />
-        <NumberField label="Disp." value={item.availability} onChange={(value) => change((g) => void (g.availability = value))} />
-        <Field label="R/F">
-          <Select label="Restrição" value={item.restriction || 'none'} options={[{ value: 'none', label: '—' }, { value: 'R', label: 'R' }, { value: 'F', label: 'F' }]} onChange={(value) => change((g) => void (g.restriction = value === 'none' ? '' : (value as 'R' | 'F')))} />
+        <NumberField label="Disp." term="gear:availability" value={item.availability} onChange={(value) => change((g) => void (g.availability = value))} />
+        <Field label="R/P" term="gear:restriction">
+          <Select label="Restrição" value={item.restriction || 'none'} options={[{ value: 'none', label: '—' }, { value: 'R', label: 'R' }, { value: 'P', label: 'P' }]} onChange={(value) => change((g) => void (g.restriction = value === 'none' ? '' : (value as 'R' | 'P')))} />
         </Field>
-        <NumberField label="Nível disp." value={item.deviceRating} onChange={(value) => change((g) => void (g.deviceRating = value))} />
-        <NumberField label="Armadura" value={item.armor} onChange={(value) => change((g) => void (g.armor = value))} />
-        <NumberField label="Essência" step={0.05} value={item.essence} onChange={(value) => change((g) => void (g.essence = value))} />
-        <NumberField label="+ Dados Inic." value={item.initiativeDice} onChange={(value) => change((g) => void (g.initiativeDice = value))} />
+        <NumberField label="Nível disp." term="gear:deviceRating" value={item.deviceRating} onChange={(value) => change((g) => void (g.deviceRating = value))} />
+        <NumberField label="Armadura" term="stat:armor" value={item.armor} onChange={(value) => change((g) => void (g.armor = value))} />
+        <NumberField label="Essência" term="gear:essence" step={0.05} value={item.essence} onChange={(value) => change((g) => void (g.essence = value))} />
+        <NumberField label="+ Dados Inic." term="stat:initiative" value={item.initiativeDice} onChange={(value) => change((g) => void (g.initiativeDice = value))} />
       </div>
       <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_auto]">
         <div className="flex flex-wrap gap-2">
           {CORE_ATTRIBUTES.map((key: CoreAttribute) => (
             <label key={key} className="flex items-center gap-1 text-sm">
-              <span className="text-mute">{ATTRIBUTE_NAMES[key].slice(0, 3)}</span>
+              <span className="text-mute"><Term id="gear:bonus" plain>{ATTRIBUTE_NAMES[key].slice(0, 3)}</Term></span>
               <input className="input w-12! px-1! py-0!  font-mono" type="number" aria-label={`Bônus de ${ATTRIBUTE_NAMES[key]}`} value={item.attributeBonuses[key] ?? 0} onChange={(event) => change((g) => void (g.attributeBonuses[key] = Number(event.target.value) || 0))} />
             </label>
           ))}
         </div>
         <div className="w-40">
+          <p className="label mb-1"><Term id="gear:grade">Classe</Term></p>
           <Select label="Classe" value={item.grade} options={grades.map((g) => ({ value: g.id, label: g.name }))} onChange={(value) => change((g) => void (g.grade = value as GearItem['grade']))} />
         </div>
       </div>

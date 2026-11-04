@@ -1,4 +1,5 @@
 import { ATTRIBUTE_NAMES, CORE_ATTRIBUTES, byId, magicData, skillGroups, skills } from '../data';
+import { Term } from '../ui/Term';
 import { attributeMax, effectiveSkills, edgeMax, isAwakened, isCaster, isTechnomancer, skillGroupRating, specialMax } from '../engine/derive';
 import { newId, useCharacter } from '../store';
 import { Empty, Meter, NumberField, Panel, Select, Stepper, TextField } from '../ui/primitives';
@@ -18,31 +19,31 @@ export function KarmaStep() {
   return (
     <div className="space-y-4">
       <div className="grid gap-4 lg:grid-cols-2">
-        <Panel title="Atributos">
+        <Panel title="Atributos" term="concept:attributes">
           <p className="mb-2 text-sm text-mute">Novo nível x 5 Carma.</p>
           <ul className="space-y-1">
             {CORE_ATTRIBUTES.map((key) => (
               <li key={key} className="flex items-center justify-between gap-2">
-                <span>{ATTRIBUTE_NAMES[key]}</span>
+                <Term id={`attr:${key}`}>{ATTRIBUTE_NAMES[key]}</Term>
                 <span className="ml-auto font-mono text-sm text-mute">{derived.natural[key]}</span>
                 <Stepper label={`Carma em ${ATTRIBUTE_NAMES[key]}`} value={character.attributes[key].karmaRanks} max={attributeMax(character, key) - derived.natural[key] + character.attributes[key].karmaRanks} onChange={(value) => edit((c) => void (c.attributes[key].karmaRanks = value))} />
               </li>
             ))}
             <li className="flex items-center gap-2">
-              <span>Trunfo</span>
+              <Term id="attr:edge" />
               <span className="ml-auto font-mono text-sm text-mute">{derived.edge}</span>
               <Stepper label="Carma em Trunfo" value={character.special.edge.karmaRanks} max={edgeMax(character) - derived.edge + character.special.edge.karmaRanks} onChange={(value) => edit((c) => void (c.special.edge.karmaRanks = value))} />
             </li>
             {isAwakened(character) && (
               <li className="flex items-center gap-2">
-                <span>Magia</span>
+                <Term id="attr:magic" />
                 <span className="ml-auto font-mono text-sm text-mute">{derived.magicNatural}</span>
                 <Stepper label="Carma em Magia" value={character.special.magic.karmaRanks} max={specialMax(character, 'magic') - derived.magicNatural + character.special.magic.karmaRanks} onChange={(value) => edit((c) => void (c.special.magic.karmaRanks = value))} />
               </li>
             )}
             {isTechnomancer(character) && (
               <li className="flex items-center gap-2">
-                <span>Ressonância</span>
+                <Term id="attr:resonance" />
                 <span className="ml-auto font-mono text-sm text-mute">{derived.resonanceNatural}</span>
                 <Stepper label="Carma em Ressonância" value={character.special.resonance.karmaRanks} max={specialMax(character, 'resonance') - derived.resonanceNatural + character.special.resonance.karmaRanks} onChange={(value) => edit((c) => void (c.special.resonance.karmaRanks = value))} />
               </li>
@@ -50,31 +51,31 @@ export function KarmaStep() {
           </ul>
         </Panel>
 
-        <Panel title="Balanço de Carma">
+        <Panel title="Balanço de Carma" term="stat:karma">
           <ul className="space-y-0.5 font-mono text-sm">
             <li className="flex justify-between"><span>Inicial</span><span>{derived.karma.start}</span></li>
             {derived.karma.lines.filter((line) => line.value !== 0).map((line) => (
               <li key={line.label} className="flex justify-between">
                 <span className="text-mute">{line.label}</span>
-                <span className={line.value > 0 ? 'text-acid' : 'text-magenta'}>{line.value > 0 ? '+' : ''}{line.value}</span>
+                <span className={line.value > 0 ? 'text-acid' : 'text-alert'}>{line.value > 0 ? '+' : ''}{line.value}</span>
               </li>
             ))}
             <li className="mt-1 flex justify-between border-t border-line pt-1 text-base">
               <span>Restante (máx. 7 para o jogo)</span>
-              <span className={derived.karma.remaining < 0 ? 'text-magenta' : 'text-cyan'}>{derived.karma.remaining}</span>
+              <span className={derived.karma.remaining < 0 ? 'text-alert' : 'text-accent'}>{derived.karma.remaining}</span>
             </li>
           </ul>
         </Panel>
       </div>
 
-      <Panel title="Perícias" aside={<span className="text-sm text-mute">Ativa: novo nível x 2 · Grupo: x 5 · Especialização: 7</span>}>
+      <Panel title="Perícias" term="concept:skills" aside={<span className="text-sm text-mute">Ativa: novo nível x 2 · Grupo: x 5 · Especialização: 7</span>}>
         <ul className="grid gap-x-6 gap-y-1 lg:grid-cols-2">
           {purchased.map((skill) => {
             const entry = character.skills[skill.id];
             const rating = effectiveSkills(character).find((row) => row.id === skill.id)?.rating ?? 0;
             return (
               <li key={skill.id} className="flex items-center gap-2">
-                <span>{skill.name}</span>
+                <Term id={`skill:${skill.id}`}>{skill.name}</Term>
                 <span className="ml-auto font-mono text-sm text-mute">{rating}</span>
                 <Stepper label={`Carma em ${skill.name}`} value={entry?.karmaRanks ?? 0} onChange={(value) => setKarmaRanks(skill.id, value)} />
               </li>
@@ -82,7 +83,7 @@ export function KarmaStep() {
           })}
           {skillGroups.filter((group) => skillGroupRating(character, group.id) > 0).map((group) => (
             <li key={group.id} className="flex items-center gap-2">
-              <span>Grupo {group.name}</span>
+              <span>Grupo <Term id={`group:${group.id}`}>{group.name}</Term></span>
               <span className="ml-auto font-mono text-sm text-mute">{skillGroupRating(character, group.id)}</span>
               <Stepper label={`Carma no grupo ${group.name}`} value={character.skillGroups[group.id]?.karmaRanks ?? 0} onChange={(value) => edit((c) => {
                 const current = c.skillGroups[group.id] ?? { points: 0, karmaRanks: 0 };
@@ -96,7 +97,7 @@ export function KarmaStep() {
         </div>
       </Panel>
 
-      <Panel title="Contatos" aside={<div className="w-52"><Meter label="Carma grátis" spent={derived.points.contacts.spent} pool={derived.points.contacts.pool} /></div>}>
+      <Panel title="Contatos" term="concept:contacts" aside={<div className="w-52"><Meter label="Carma grátis" spent={derived.points.contacts.spent} pool={derived.points.contacts.pool} /></div>}>
         {!character.contacts.length && <Empty>Conexão + Lealdade custam 1 Carma por nível, com máximo de 7 por contato.</Empty>}
         <ul className="space-y-2">
           {character.contacts.map((contact, index) => (
@@ -104,11 +105,11 @@ export function KarmaStep() {
               <TextField label="Nome" value={contact.name} onChange={(value) => edit((c) => void (c.contacts[index].name = value))} />
               <TextField label="Função" value={contact.role} onChange={(value) => edit((c) => void (c.contacts[index].role = value))} />
               <div>
-                <div className="label">Conexão</div>
+                <div className="label"><Term id="concept:connection" /></div>
                 <Stepper label="Conexão" value={contact.connection} min={1} onChange={(value) => edit((c) => void (c.contacts[index].connection = value))} />
               </div>
               <div>
-                <div className="label">Lealdade</div>
+                <div className="label"><Term id="concept:loyalty" /></div>
                 <Stepper label="Lealdade" value={contact.loyalty} min={1} onChange={(value) => edit((c) => void (c.contacts[index].loyalty = value))} />
               </div>
               <button type="button" className="btn btn-danger" aria-label={`Remover ${contact.name || 'contato'}`} onClick={() => edit((c) => void c.contacts.splice(index, 1))}>✕</button>
@@ -119,7 +120,7 @@ export function KarmaStep() {
       </Panel>
 
       {isCaster(character) && (
-        <Panel title="Espíritos vinculados" aside={<span className="text-sm text-mute">1 Carma por serviço · Poder = Magia ({derived.magic}) · Máx. {derived.natural.charisma}</span>}>
+        <Panel title="Espíritos vinculados" term="magic:spirits" aside={<span className="text-sm text-mute">1 Carma por serviço · Poder = Magia ({derived.magic}) · Máx. {derived.natural.charisma}</span>}>
           <ul className="space-y-2">
             {character.spirits.map((spirit, index) => (
               <li key={spirit.id} className="flex items-center gap-3">
@@ -134,7 +135,7 @@ export function KarmaStep() {
       )}
 
       {isTechnomancer(character) && (
-        <Panel title="Sprites registrados" aside={<span className="text-sm text-mute">1 Carma por tarefa · Nível = Ressonância ({derived.resonance}) · Máx. {derived.natural.charisma}</span>}>
+        <Panel title="Sprites registrados" term="magic:sprites" aside={<span className="text-sm text-mute">1 Carma por tarefa · Nível = Ressonância ({derived.resonance}) · Máx. {derived.natural.charisma}</span>}>
           <ul className="space-y-2">
             {character.sprites.map((sprite, index) => (
               <li key={sprite.id} className="flex items-center gap-3">
@@ -149,7 +150,7 @@ export function KarmaStep() {
       )}
 
       {isAwakened(character) && (
-        <Panel title="Vincular focos" aside={<span className="text-sm text-mute">Poder total máx. {derived.magicNatural * 2}</span>}>
+        <Panel title="Vincular focos" term="magic:foci" aside={<span className="text-sm text-mute">Poder total máx. {derived.magicNatural * 2}</span>}>
           <ul className="space-y-2">
             {character.foci.map((focus, index) => (
               <li key={focus.id} className="grid items-end gap-2 sm:grid-cols-[1fr_1fr_6rem_auto]">

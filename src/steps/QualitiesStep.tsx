@@ -27,7 +27,7 @@ export function QualitiesStep() {
 
   return (
     <div className="grid gap-4 xl:grid-cols-[1fr_1fr]">
-      <Panel title="Catálogo">
+      <Panel title="Catálogo" term="concept:qualities">
         <div className="mb-3 grid grid-cols-2 gap-2">
           <Choice selected={kind === 'positive'} onClick={() => setKind('positive')}>Positivas</Choice>
           <Choice selected={kind === 'negative'} onClick={() => setKind('negative')}>Negativas</Choice>
@@ -38,10 +38,10 @@ export function QualitiesStep() {
             const owned = character.qualities.some((q) => q.id === quality.id);
             return (
               <li key={quality.id}>
-                <button type="button" disabled={owned && !quality.repeatable} className="w-full cursor-pointer border border-line px-2 py-1 text-left hover:border-cyan disabled:cursor-not-allowed disabled:opacity-40" onClick={() => add(quality)}>
+                <button type="button" disabled={owned && !quality.repeatable} className="w-full cursor-pointer border border-line px-2 py-1 text-left hover:border-accent disabled:cursor-not-allowed disabled:opacity-40" onClick={() => add(quality)}>
                   <span className="flex justify-between gap-2">
                     <span>{quality.name}</span>
-                    <span className="font-mono text-sm text-cyan">{costLabel(quality)}</span>
+                    <span className="font-mono text-sm text-accent">{costLabel(quality)}</span>
                   </span>
                   <span className="block text-sm text-mute">{quality.summary}</span>
                 </button>
@@ -77,7 +77,7 @@ function EntryRow({ entry, index }: { entry: QualityEntry; index: number }) {
   if (!quality) return null;
   const change = (recipe: (q: QualityEntry) => void) => edit((c) => recipe(c.qualities[index]));
   return (
-    <li className={`border-l-2 bg-panel-2 p-2 ${quality.kind === 'positive' ? 'border-acid' : 'border-magenta'}`}>
+    <li className={`border-l-2 bg-panel-2 p-2 ${quality.kind === 'positive' ? 'border-acid' : 'border-accent'}`}>
       <div className="flex items-center justify-between gap-2">
         <span>{quality.name}</span>
         <span className="flex items-center gap-2">

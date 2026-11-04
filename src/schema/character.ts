@@ -66,7 +66,7 @@ export const gearItemSchema = z.object({
   quantity: z.number().int().min(1).default(1),
   unitCost: z.number().min(0).default(0),
   availability: z.number().int().min(0).default(0),
-  restriction: z.enum(['', 'R', 'F']).default(''),
+  restriction: z.enum(['', 'R', 'P']).default(''),
   deviceRating: z.number().int().min(0).default(0),
   essence: z.number().min(0).default(0),
   grade: z.enum(['standard', 'alpha']).default('standard'),

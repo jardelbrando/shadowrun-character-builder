@@ -10,6 +10,7 @@ import adeptPowersJson from './adeptPowers.json';
 import programsJson from './programs.json';
 import magicJson from './magic.json';
 import lifestylesJson from './lifestyles.json';
+import glossaryJson from './glossary.json';
 
 export const PRIORITY_LEVELS = ['A', 'B', 'C', 'D', 'E'] as const;
 export type PriorityLevel = (typeof PRIORITY_LEVELS)[number];
@@ -174,6 +175,17 @@ export const magicData = magicJson;
 export const lifestyles = lifestylesJson.lifestyles;
 export const grades = lifestylesJson.grades;
 export const gearCategories = lifestylesJson.gearCategories;
+
+export interface GlossaryEntry {
+  title: string;
+  kind: string;
+  body: string;
+  effects?: string[];
+  default?: boolean;
+  specs?: string;
+}
+
+export const glossary = glossaryJson as Record<string, GlossaryEntry>;
 
 export const SPELL_CATEGORY_NAMES: Record<string, string> = {
   combate: 'Combate',

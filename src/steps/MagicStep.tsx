@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Term } from '../ui/Term';
 import {
   AWAKENING_NAMES,
   AWAKENING_TYPES,
@@ -15,8 +16,10 @@ import {
   skills,
   spells,
 } from '../data';
+import { setAwakeningType } from '../engine/actions';
 import { adeptPowerCost, isAdept, isCaster, isTechnomancer } from '../engine/derive';
 import { newId, useCharacter } from '../store';
+import { FreeSkillPicker } from './FreeSkillPicker';
 import { Choice, Empty, Field, Meter, Panel, Select, Stepper, TextField } from '../ui/primitives';
 
 export function MagicStep() {
@@ -25,13 +28,6 @@ export function MagicStep() {
   const row = level ? priorities[level].magic : {};
   const option = derived.option;
   const [spellFilter, setSpellFilter] = useState('');
-
-  const freeChoices = skills.filter((skill) => {
-    const kind = option?.skills?.kind;
-    if (kind === 'magic') return skill.restricted === 'magic';
-    if (kind === 'resonance') return skill.restricted === 'resonance';
-    return !skill.restricted;
-  });
 
   const toggle = (list: string[], id: string) => (list.includes(id) ? list.filter((item) => item !== id) : [...list, id]);
 
@@ -44,8 +40,8 @@ export function MagicStep() {
             const available = type === 'none' || row[type] !== undefined;
             const grant = row[type];
             return (
-              <Choice key={type} selected={character.awakening.type === type} disabled={!available} onClick={() => edit((c) => void (c.awakening.type = type))}>
-                <div className="font-display text-xs font-bold">{AWAKENING_NAMES[type]}</div>
+              <Choice key={type} selected={character.awakening.type === type} disabled={!available} onClick={() => edit((c) => setAwakeningType(c, type))}>
+                <div className="font-display text-xs font-bold"><Term id={`awakening:${type}`} plain>{AWAKENING_NAMES[type]}</Term></div>
                 {grant && <div className="font-mono text-xs text-mute">{grant.magic ? `Magia ${grant.magic}` : `Ressonância ${grant.resonance}`}</div>}
               </Choice>
             );
@@ -53,21 +49,7 @@ export function MagicStep() {
         </div>
       </Panel>
 
-      {option?.skills && (
-        <Panel title={`Perícias gratuitas (${option.skills.count} em nível ${option.skills.rating})`}>
-          <div className="flex flex-wrap gap-2">
-            {freeChoices.map((skill) => {
-              const selected = character.awakening.freeSkills.includes(skill.id);
-              const full = character.awakening.freeSkills.length >= option.skills!.count;
-              return (
-                <button key={skill.id} type="button" aria-pressed={selected} disabled={!selected && full} className={`btn ${selected ? 'btn-primary' : ''}`} onClick={() => edit((c) => void (c.awakening.freeSkills = toggle(c.awakening.freeSkills, skill.id)))}>
-                  {skill.name}
-                </button>
-              );
-            })}
-          </div>
-        </Panel>
-      )}
+      <FreeSkillPicker />
 
       {character.awakening.type === 'aspected' && (
         <Panel title={`Grupo de perícias${option?.skillGroup ? ` em nível ${option.skillGroup.rating}` : ''}`}>
@@ -89,11 +71,11 @@ export function MagicStep() {
         <Panel title="Tradição e mentor">
           <div className="grid gap-3 sm:grid-cols-2">
             {isCaster(character) && (
-              <Field label="Tradição">
+              <Field label="Tradição" term="magic:tradition">
                 <Select label="Tradição" value={character.awakening.tradition} options={magicData.traditions.map((t) => ({ value: t.id, label: t.name }))} onChange={(value) => edit((c) => void (c.awakening.tradition = value))} />
               </Field>
             )}
-            <Field label="Espírito mentor">
+            <Field label="Espírito mentor" term="magic:mentor">
               <Select label="Espírito mentor" value={character.awakening.mentorSpirit} options={magicData.mentorSpirits.map((m) => ({ value: m.id, label: m.name }))} onChange={(value) => edit((c) => void (c.awakening.mentorSpirit = value))} />
             </Field>
           </div>
@@ -102,7 +84,7 @@ export function MagicStep() {
       )}
 
       {isCaster(character) && (
-        <Panel title="Feitiços" aside={<span className="font-mono text-sm text-mute">{character.spells.length} escolhidos · {derived.freeSpells} grátis · máx. {derived.magicNatural * 2}</span>}>
+        <Panel title="Feitiços" term="magic:spells" aside={<span className="font-mono text-sm text-mute">{character.spells.length} escolhidos · {derived.freeSpells} grátis · máx. {derived.magicNatural * 2}</span>}>
           <input className="input mb-3" placeholder="Buscar feitiço" aria-label="Buscar feitiço" value={spellFilter} onChange={(event) => setSpellFilter(event.target.value)} />
           <div className="max-h-96 space-y-3 overflow-y-auto pr-1">
             {Object.entries(SPELL_CATEGORY_NAMES).map(([category, name]) => {
@@ -116,7 +98,7 @@ export function MagicStep() {
                       const selected = character.spells.includes(spell.id);
                       return (
                         <li key={spell.id}>
-                          <button type="button" aria-pressed={selected} className={`flex w-full cursor-pointer items-center justify-between gap-2 border px-2 py-1 text-left ${selected ? 'border-cyan bg-cyan/10' : 'border-line hover:border-mute'}`} onClick={() => edit((c) => void (c.spells = toggle(c.spells, spell.id)))}>
+                          <button type="button" aria-pressed={selected} className={`flex w-full cursor-pointer items-center justify-between gap-2 border px-2 py-1 text-left ${selected ? 'border-accent bg-accent/10' : 'border-line hover:border-mute'}`} onClick={() => edit((c) => void (c.spells = toggle(c.spells, spell.id)))}>
                             <span>{spell.name}</span>
                             <span className="font-mono text-xs whitespace-nowrap text-mute">
                               {spell.type} · {spell.range} · {spell.duration} · {spell.drain}
@@ -134,7 +116,7 @@ export function MagicStep() {
       )}
 
       {isCaster(character) && (
-        <Panel title="Rituais e preparativos" aside={<button type="button" className="btn" onClick={() => edit((c) => void c.formulae.push({ id: newId(), kind: 'ritual', name: '' }))}>+ Adicionar</button>}>
+        <Panel title="Rituais e preparativos" term="magic:formulae" aside={<button type="button" className="btn" onClick={() => edit((c) => void c.formulae.push({ id: newId(), kind: 'ritual', name: '' }))}>+ Adicionar</button>}>
           {!character.formulae.length && <Empty>Cada fórmula custa 5 de Carma.</Empty>}
           <ul className="space-y-2">
             {character.formulae.map((formula, index) => (
@@ -149,13 +131,13 @@ export function MagicStep() {
       )}
 
       {isTechnomancer(character) && (
-        <Panel title="Formas complexas" aside={<span className="font-mono text-sm text-mute">{character.complexForms.length} escolhidas · {derived.freeComplexForms} grátis · máx. {derived.natural.logic}</span>}>
+        <Panel title="Formas complexas" term="magic:complexForms" aside={<span className="font-mono text-sm text-mute">{character.complexForms.length} escolhidas · {derived.freeComplexForms} grátis · máx. {derived.natural.logic}</span>}>
           <ul className="grid gap-1 md:grid-cols-2">
             {complexForms.map((form) => {
               const selected = character.complexForms.includes(form.id);
               return (
                 <li key={form.id}>
-                  <button type="button" aria-pressed={selected} className={`flex w-full cursor-pointer items-center justify-between gap-2 border px-2 py-1 text-left ${selected ? 'border-cyan bg-cyan/10' : 'border-line hover:border-mute'}`} onClick={() => edit((c) => void (c.complexForms = toggle(c.complexForms, form.id)))}>
+                  <button type="button" aria-pressed={selected} className={`flex w-full cursor-pointer items-center justify-between gap-2 border px-2 py-1 text-left ${selected ? 'border-accent bg-accent/10' : 'border-line hover:border-mute'}`} onClick={() => edit((c) => void (c.complexForms = toggle(c.complexForms, form.id)))}>
                     <span>{form.name}</span>
                     <span className="font-mono text-xs whitespace-nowrap text-mute">
                       {form.target} · {form.duration} · VE {form.fade}
@@ -169,7 +151,7 @@ export function MagicStep() {
       )}
 
       {isAdept(character) && (
-        <Panel title="Poderes de adepto" aside={<div className="w-48"><Meter label="Pontos de Poder" spent={derived.points.powerPoints.spent} pool={derived.points.powerPoints.pool} /></div>}>
+        <Panel title="Poderes de adepto" term="magic:powers" aside={<div className="w-48"><Meter label="Pontos de Poder" term="magic:powerPoints" spent={derived.points.powerPoints.spent} pool={derived.points.powerPoints.pool} /></div>}>
           {character.awakening.type === 'mysticAdept' && (
             <div className="mb-3 flex items-center gap-3">
               <span className="label">Comprados com Carma (5 cada)</span>
@@ -182,7 +164,7 @@ export function MagicStep() {
               const entry = character.adeptPowers[index];
               const rated = power.perRating || power.costByRating;
               return (
-                <li key={power.id} className={`border px-2 py-1 ${entry ? 'border-cyan bg-cyan/10' : 'border-line'}`}>
+                <li key={power.id} className={`border px-2 py-1 ${entry ? 'border-accent bg-accent/10' : 'border-line'}`}>
                   <div className="flex items-center justify-between gap-2">
                     <button type="button" aria-pressed={!!entry} className="flex-1 cursor-pointer text-left" onClick={() => edit((c) => {
                       if (entry) c.adeptPowers.splice(index, 1);

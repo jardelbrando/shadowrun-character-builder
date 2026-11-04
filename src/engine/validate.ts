@@ -11,6 +11,7 @@ import {
 } from '../data';
 import type { Character } from '../schema/character';
 import {
+  CREATION_SKILL_MAX,
   MAX_AUGMENTATION_BONUS,
   MAX_CARRIED_KARMA,
   MAX_CARRIED_NUYEN,
@@ -24,6 +25,7 @@ import {
   isTechnomancer,
   qualityValue,
   skillGroupRating,
+  skillMax,
   skillRating,
   specialMax,
   type Derived,
@@ -37,8 +39,6 @@ export interface Issue {
   severity: 'error' | 'warning';
   message: string;
 }
-
-const CREATION_SKILL_MAX = 6;
 
 export function validate(c: Character, d: Derived): Issue[] {
   const issues: Issue[] = [];
@@ -161,18 +161,13 @@ export function validate(c: Character, d: Derived): Issue[] {
   if (groupLeft > 0) error('skills', `Faltam gastar ${groupLeft} pontos de grupo de perícias.`);
   if (groupLeft < 0) error('skills', `${-groupLeft} pontos de grupo gastos a mais.`);
 
-  const aptitudeLimit = (id: string) => {
-    const aptitude = c.qualities.find((q) => q.id === 'aptidao');
-    const skill = byId(skills, id);
-    return aptitude && skill && aptitude.note.trim().toLowerCase() === skill.name.toLowerCase() ? CREATION_SKILL_MAX + 1 : CREATION_SKILL_MAX;
-  };
   const aspected = c.awakening.freeSkillGroup;
   const allowedMagicSkills = type === 'aspected' ? (byId(skillGroups, aspected)?.skills ?? []) : null;
 
   for (const skill of skills) {
     const rating = skillRating(c, skill.id);
     if (!rating) continue;
-    if (rating > aptitudeLimit(skill.id)) error('skills', `${skill.name} acima do nível máximo na criação.`);
+    if (rating > skillMax(c, skill.id)) error('skills', `${skill.name} acima do nível máximo na criação.`);
     if (skill.restricted === 'magic') {
       if (!isCaster(c)) error('skills', `${skill.name} exige um conjurador.`);
       if (allowedMagicSkills && !allowedMagicSkills.includes(skill.id)) error('skills', `${skill.name} está fora do grupo do mago de aspecto.`);

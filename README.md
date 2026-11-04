@@ -33,6 +33,7 @@ React, TypeScript e Vite · Zustand (estado) · Zod (validação do JSON) · Mot
 | `src/engine/derive.ts` | Cálculos: pontos, Carma, neoienes, Essência, limites, Iniciativa e monitores |
 | `src/engine/validate.ts` | Regras de criação, com pendências agrupadas por etapa |
 | `src/engine/book-examples.test.ts` | Testes com os exemplos do livro (Jefferson, Beto e Clara) |
+| `src/engine/megacorp.ts` | Escolhe a megacorp de cada etapa e a que vigia o personagem, com dados em `src/data/megacorps.json` |
 | `src/steps/` | As nove etapas do livro |
 | `src/sheet/` | Ficha final, também usada na impressão |
 

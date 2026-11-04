@@ -2,13 +2,19 @@ import { useEffect, type ReactNode } from 'react';
 import { animate, motion, useMotionValue, useTransform } from 'motion/react';
 import { Select as RadixSelect } from 'radix-ui';
 import type { Issue } from '../engine/validate';
+import { Term } from './Term';
 
-export function Panel({ title, aside, children, className = '' }: { title?: string; aside?: ReactNode; children: ReactNode; className?: string }) {
+export function Panel({ title, term, aside, children, className = '' }: { title?: string; term?: string; aside?: ReactNode; children: ReactNode; className?: string }) {
   return (
     <section className={`cut border border-line bg-panel/90 p-4 ${className}`}>
       {(title || aside) && (
         <header className="mb-3 flex flex-wrap items-center justify-between gap-2">
-          {title && <h3 className="font-display text-sm font-bold tracking-wide text-cyan uppercase">{title}</h3>}
+          {title && (
+            <h3 className="font-display text-sm font-bold tracking-wide text-accent uppercase">
+              <span aria-hidden="true" className="mr-2 font-tag text-lg text-accent">//</span>
+              {term ? <Term id={term}>{title}</Term> : title}
+            </h3>
+          )}
           {aside}
         </header>
       )}
@@ -17,10 +23,10 @@ export function Panel({ title, aside, children, className = '' }: { title?: stri
   );
 }
 
-export function Field({ label, children, className = '' }: { label: string; children: ReactNode; className?: string }) {
+export function Field({ label, term, children, className = '' }: { label: string; term?: string; children: ReactNode; className?: string }) {
   return (
     <label className={`flex flex-col gap-1 ${className}`}>
-      <span className="label">{label}</span>
+      <span className="label">{term ? <Term id={term} plain>{label}</Term> : label}</span>
       {children}
     </label>
   );
@@ -34,9 +40,9 @@ export function TextField({ label, value, onChange, placeholder, className }: { 
   );
 }
 
-export function NumberField({ label, value, onChange, min = 0, step = 1, className }: { label: string; value: number; onChange: (value: number) => void; min?: number; step?: number; className?: string }) {
+export function NumberField({ label, term, value, onChange, min = 0, step = 1, className }: { label: string; term?: string; value: number; onChange: (value: number) => void; min?: number; step?: number; className?: string }) {
   return (
-    <Field label={label} className={className}>
+    <Field label={label} term={term} className={className}>
       <input
         className="input font-mono"
         type="number"
@@ -55,7 +61,7 @@ export function Stepper({ value, onChange, min = 0, max = 99, label }: { value: 
       <button type="button" className="btn px-2! py-0.5!" disabled={value <= min} aria-label={`Diminuir ${label}`} onClick={() => onChange(value - 1)}>
         –
       </button>
-      <motion.span key={value} initial={{ scale: 1.35, color: '#22e6ff' }} animate={{ scale: 1, color: '#e6e6f2' }} className="w-8 text-center font-mono">
+      <motion.span key={value} initial={{ scale: 1.35, color: '#ff3131' }} animate={{ scale: 1, color: '#e6e6f2' }} className="w-8 text-center font-mono">
         {value}
       </motion.span>
       <button type="button" className="btn px-2! py-0.5!" disabled={value >= max} aria-label={`Aumentar ${label}`} onClick={() => onChange(value + 1)}>
@@ -73,8 +79,8 @@ export function Choice({ selected, disabled, onClick, children, className = '' }
       aria-pressed={selected}
       disabled={disabled}
       onClick={onClick}
-      className={`cut-sm border p-3 text-left transition-colors ${
-        selected ? 'border-cyan bg-cyan/10 shadow-[inset_0_0_18px_rgb(34_230_255/0.15)]' : 'border-line bg-panel-2 hover:border-mute'
+      className={`cut-sm border border-l-4 p-3 text-left ${
+        selected ? 'border-accent border-l-blood bg-accent/10 shadow-[inset_0_0_18px_rgb(255_49_49/0.15)]' : 'border-line bg-panel-2 hover:border-mute'
       } ${disabled ? 'cursor-not-allowed opacity-35' : 'cursor-pointer'} ${className}`}
     >
       {children}
@@ -87,13 +93,13 @@ export function Select({ value, onChange, options, placeholder = 'Selecionar', l
     <RadixSelect.Root value={value || undefined} onValueChange={onChange}>
       <RadixSelect.Trigger className="input flex items-center justify-between gap-2 text-left" aria-label={label}>
         <RadixSelect.Value placeholder={placeholder} />
-        <RadixSelect.Icon className="text-cyan">▾</RadixSelect.Icon>
+        <RadixSelect.Icon className="text-accent">▾</RadixSelect.Icon>
       </RadixSelect.Trigger>
       <RadixSelect.Portal>
-        <RadixSelect.Content position="popper" sideOffset={4} className="z-50 max-h-72 min-w-(--radix-select-trigger-width) overflow-hidden border border-cyan bg-panel shadow-[0_0_24px_rgb(34_230_255/0.25)]">
+        <RadixSelect.Content position="popper" sideOffset={4} className="z-50 max-h-72 min-w-(--radix-select-trigger-width) overflow-hidden border border-accent bg-panel shadow-[0_0_24px_rgb(255_49_49/0.25)]">
           <RadixSelect.Viewport className="p-1">
             {options.map((option) => (
-              <RadixSelect.Item key={option.value} value={option.value} className="cursor-pointer px-2 py-1 outline-none data-highlighted:bg-cyan/15 data-highlighted:text-cyan data-[state=checked]:text-acid">
+              <RadixSelect.Item key={option.value} value={option.value} className="cursor-pointer px-2 py-1 outline-none data-highlighted:bg-accent/15 data-highlighted:text-accent data-[state=checked]:text-acid">
                 <RadixSelect.ItemText>{option.label}</RadixSelect.ItemText>
               </RadixSelect.Item>
             ))}
@@ -114,19 +120,20 @@ export function AnimatedNumber({ value, format = (n: number) => `${n}` }: { valu
   return <motion.span>{text}</motion.span>;
 }
 
-export function Meter({ label, spent, pool }: { label: string; spent: number; pool: number }) {
+export function Meter({ label, term, spent, pool }: { label: string; term?: string; spent: number; pool: number }) {
   const left = pool - spent;
-  const tone = left < 0 ? 'bg-magenta' : left === 0 ? 'bg-acid' : 'bg-cyan';
+  const tone = left < 0 ? 'bg-blood' : left === 0 ? 'bg-acid' : 'bg-accent';
   return (
     <div>
       <div className="mb-1 flex items-baseline justify-between gap-2">
-        <span className="label">{label}</span>
-        <span className={`font-mono text-sm ${left < 0 ? 'text-magenta' : ''}`}>
+        <span className="label">{term ? <Term id={term}>{label}</Term> : label}</span>
+        <span className={`font-mono text-sm ${left < 0 ? 'text-alert' : ''}`}>
           {spent} / {pool}
         </span>
       </div>
-      <div className="h-1.5 overflow-hidden bg-line">
+      <div className={`relative h-2 overflow-hidden bg-line ${left < 0 ? 'alarm' : ''}`}>
         <motion.div className={`h-full ${tone}`} animate={{ width: `${pool ? Math.min(100, (spent / pool) * 100) : 0}%` }} transition={{ duration: 0.3 }} />
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent_0_6px,var(--color-void)_6px_8px)]" />
       </div>
     </div>
   );
@@ -137,7 +144,7 @@ export function IssueList({ issues }: { issues: Issue[] }) {
   return (
     <ul className="space-y-1 text-[0.95rem]">
       {issues.map((issue, index) => (
-        <motion.li key={issue.message + index} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} className={issue.severity === 'error' ? 'text-magenta' : 'text-amber'}>
+        <motion.li key={issue.message + index} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} className={issue.severity === 'error' ? 'text-alert' : 'text-amber'}>
           {issue.severity === 'error' ? '✖' : '▲'} {issue.message}
         </motion.li>
       ))}

@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import { characterSchema, gearItemSchema, newCharacter, type Character } from '../schema/character';
 import { parseCharacter, serializeCharacter } from '../schema/io';
-import { derive, karmaCost } from './derive';
+import { setAwakeningType, toggleFreeSkill } from './actions';
+import { CORE_ATTRIBUTES, glossary, skillGroups, skills } from '../data';
+import { derive, karmaCost, skillRating } from './derive';
+import { stepCorp, watcherCorp } from './megacorp';
 import { validate } from './validate';
 
 type Points = Partial<Record<keyof Character['attributes'], number>>;
@@ -195,6 +198,34 @@ describe('regras', () => {
     expect(messages.some((m) => m.includes('não está disponível na prioridade E'))).toBe(true);
   });
 
+  it('perícia gratuita devolve os pontos já gastos sem baixar o nível', () => {
+    const c = newCharacter();
+    c.priorities = { metatype: 'C', attributes: 'B', magicResonance: 'A', skills: 'D', resources: 'E' };
+    c.metatype = 'elf';
+    c.awakening.type = 'mage';
+    const entry = (points: number) => ({ points, karmaRanks: 0, specialization: '', specBy: 'points' as const });
+    c.skills = { conjuracao: entry(6), contramagica: entry(5), invocacao: entry(6), arcana: entry(4), alquimia: entry(1) };
+    expect(derive(c).points.skills).toEqual({ pool: 22, spent: 22 });
+
+    toggleFreeSkill(c, 'conjuracao');
+    toggleFreeSkill(c, 'contramagica');
+    toggleFreeSkill(c, 'invocacao');
+
+    expect(c.awakening.freeSkills).toEqual(['conjuracao', 'contramagica']);
+    expect(skillRating(c, 'conjuracao')).toBe(6);
+    expect(skillRating(c, 'contramagica')).toBe(5);
+    expect(derive(c).points.skills.spent).toBe(12);
+    expect(validate(c, derive(c)).some((i) => i.message.startsWith('Escolha 2 perícia'))).toBe(false);
+  });
+
+  it('trocar o tipo de personagem limpa as perícias gratuitas', () => {
+    const c = newCharacter();
+    c.awakening.type = 'mage';
+    c.awakening.freeSkills = ['conjuracao'];
+    setAwakeningType(c, 'technomancer');
+    expect(c.awakening.freeSkills).toEqual([]);
+  });
+
   it('exportar e importar preserva o personagem', () => {
     const c = clara();
     const result = parseCharacter(serializeCharacter(c));
@@ -204,5 +235,53 @@ describe('regras', () => {
   it('importação recusa JSON inválido', () => {
     expect(parseCharacter('{').ok).toBe(false);
     expect(parseCharacter('{"schemaVersion":99}').ok).toBe(false);
+  });
+});
+
+describe('megacorps', () => {
+  it('magia aponta para a Wuxing em todos os tipos de Desperto', () => {
+    const c = newCharacter();
+    for (const type of ['mage', 'adept', 'mysticAdept', 'aspected'] as const) {
+      c.awakening.type = type;
+      expect(stepCorp(c, 'magic').id).toBe('wuxing');
+      expect(watcherCorp(c).id).toBe('wuxing');
+    }
+  });
+
+  it('tecnomantes atraem a NeoNET, e ampliações mudam a etapa de recursos', () => {
+    const c = newCharacter();
+    expect(stepCorp(c, 'resources').id).toBe('ares');
+    c.gear = [gearItemSchema.parse({ id: '1', name: 'X', essence: 0.5 })];
+    expect(stepCorp(c, 'resources').id).toBe('neonet');
+    c.gear = [];
+    c.awakening.type = 'technomancer';
+    expect(watcherCorp(c).id).toBe('neonet');
+  });
+
+  it('meta-tipos não humanos atraem a Evo', () => {
+    const c = newCharacter();
+    c.metatype = 'troll';
+    expect(stepCorp(c, 'priorities').id).toBe('evo');
+  });
+});
+
+describe('glossário', () => {
+  it('explica todos os atributos, perícias e grupos', () => {
+    const ids = [
+      ...CORE_ATTRIBUTES.map((key) => `attr:${key}`),
+      'attr:edge',
+      'attr:essence',
+      'attr:magic',
+      'attr:resonance',
+      ...skills.map((skill) => `skill:${skill.id}`),
+      ...skillGroups.map((group) => `group:${group.id}`),
+    ];
+    expect(ids.filter((id) => !glossary[id])).toEqual([]);
+  });
+
+  it('todos os termos usados no código existem', () => {
+    const entries = Object.values(glossary);
+    expect(entries.every((entry) => entry.title && entry.kind && entry.body)).toBe(true);
+    expect(Object.keys(glossary).filter((id) => id.startsWith('skill:') && glossary[id].default === undefined)).toEqual([]);
   });
 });

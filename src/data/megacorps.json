@@ -1,0 +1,112 @@
+[
+  {
+    "id": "ares",
+    "name": "Ares Macrotecnologia",
+    "monogram": "AR",
+    "slogan": null,
+    "color": "#d7dde5",
+    "shape": "square",
+    "focus": "Armas, policiamento e aeroespacial",
+    "line": "A pistola clássica do runner sai daqui. Cada compra fica registrada.",
+    "tag": "ARES ARMA OS 2 LADOS"
+  },
+  {
+    "id": "aztechnology",
+    "name": "Aztechnology",
+    "monogram": "AZ",
+    "slogan": null,
+    "color": "#35d48c",
+    "shape": "hex",
+    "focus": "Bens de consumo, químicos e suprimentos mágicos",
+    "line": "Se você consumiu algo hoje, a Grande A já lucrou com isso.",
+    "tag": "NÃO BEBA DAQUI"
+  },
+  {
+    "id": "evo",
+    "name": "Corporação Evo",
+    "monogram": "EV",
+    "slogan": "EVOlua",
+    "color": "#ff9a2e",
+    "shape": "circle",
+    "focus": "Trans-humanismo e bens para meta-humanos",
+    "line": "Cibernéticos biológicos e produtos feitos para quem não é humano.",
+    "tag": "METAS NÃO SÃO PRODUTO"
+  },
+  {
+    "id": "horizon",
+    "name": "Grupo Horizon",
+    "monogram": "HZ",
+    "slogan": "Sabemos O Que Você Pensa",
+    "color": "#67b8ff",
+    "shape": "circle",
+    "focus": "Mídia, publicidade e opinião pública",
+    "line": "Sua reputação também é um produto. Alguém está vendendo a sua.",
+    "tag": "PENSE ISSO, HORIZON"
+  },
+  {
+    "id": "mitsuhama",
+    "name": "Mitsuhama Tecnologia Computacional",
+    "monogram": "MC",
+    "slogan": "O Futuro é Mitsuhama",
+    "color": "#e4e4ee",
+    "shape": "hex",
+    "focus": "Robótica, indústria pesada e produtos mágicos",
+    "line": "Paga muito bem pelo sucesso. Quando você falha, ela reprova.",
+    "tag": "YAKUZA S.A."
+  },
+  {
+    "id": "neonet",
+    "name": "NeoNET",
+    "monogram": "NN",
+    "slogan": "O Amanhã Roda na NeoNET",
+    "color": "#3fe0ff",
+    "shape": "square",
+    "focus": "Matriz, ciber-itens e software",
+    "line": "A Matriz sem fio é dela. A Ressonância em você ela ainda não entende.",
+    "tag": "A MATRIZ É NOSSA"
+  },
+  {
+    "id": "renraku",
+    "name": "Renraku Sistemas Computacionais",
+    "monogram": "RK",
+    "slogan": "Soluções de Hoje para os Problemas de Hoje",
+    "color": "#ff6b6b",
+    "shape": "square",
+    "focus": "O maior depósito de dados do mundo",
+    "line": "Tudo o que você aprendeu cabe em um arquivo. Ele já existe.",
+    "tag": "DELETE SEU ARQUIVO"
+  },
+  {
+    "id": "saeder-krupp",
+    "name": "Saeder-Krupp Indústrias Pesadas",
+    "monogram": "SK",
+    "slogan": "Um Passo à Frente",
+    "color": "#f1f1f1",
+    "shape": "hex",
+    "focus": "Indústria, química, finanças e aeroespacial",
+    "line": "A maior corporação do mundo pertence a um grande dragão.",
+    "tag": "NUNCA FAÇA ACORDOS COM UM DRAGÃO"
+  },
+  {
+    "id": "shiawase",
+    "name": "Corporação Shiawase",
+    "monogram": "SH",
+    "slogan": "Progredindo a Vida",
+    "color": "#c39bff",
+    "shape": "circle",
+    "focus": "Energia nuclear, indústria e biotecnologia",
+    "line": "A mais antiga das megas trata funcionários como família. Runners não são parentes.",
+    "tag": "CONTRATO VITALÍCIO = PRISÃO"
+  },
+  {
+    "id": "wuxing",
+    "name": "Wuxing Incorporação",
+    "monogram": "WX",
+    "slogan": "Estamos Por Trás de Tudo que Você Faz",
+    "color": "#ffd36b",
+    "shape": "hex",
+    "focus": "Finanças, transportes e serviços mágicos",
+    "line": "A mais furtiva das Dez Megas já notou o seu dom.",
+    "tag": "MANA NÃO TEM DONO"
+  }
+]

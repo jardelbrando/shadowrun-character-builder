@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Term } from '../ui/Term';
 import { motion } from 'motion/react';
 import {
   ATTRIBUTE_NAMES,
@@ -15,7 +16,9 @@ import {
   spells,
 } from '../data';
 import { adeptPowerCost, effectiveSkills, gearTotals, isAwakened, isTechnomancer, qualityValue } from '../engine/derive';
+import { watcherCorp } from '../engine/megacorp';
 import { useCharacter } from '../store';
+import { CorpBanner } from '../ui/CorpBanner';
 import { formatNuyen } from '../ui/primitives';
 import { augmentedText, initiativeText } from './format';
 
@@ -25,25 +28,25 @@ function Section({ title, children, className = '' }: { title: string; children:
       variants={{ hidden: { opacity: 0, y: 14 }, shown: { opacity: 1, y: 0 } }}
       className={`sheet-section cut border border-line bg-panel/90 p-3 ${className}`}
     >
-      <h3 className="mb-2 font-display text-xs font-bold tracking-widest text-cyan uppercase">{title}</h3>
+      <h3 className="mb-2 font-display text-xs font-bold tracking-widest text-accent uppercase">{title}</h3>
       {children}
     </motion.section>
   );
 }
 
-function Row({ label, value }: { label: ReactNode; value: ReactNode }) {
+function Row({ label, term, value }: { label: ReactNode; term?: string; value: ReactNode }) {
   return (
     <div className="flex items-baseline justify-between gap-2 border-b border-line/50 py-0.5">
-      <span className="text-mute">{label}</span>
+      <span className="text-mute">{term ? <Term id={term}>{label}</Term> : label}</span>
       <span className="text-right font-mono">{value}</span>
     </div>
   );
 }
 
-function Track({ boxes, label }: { boxes: number; label: string }) {
+function Track({ boxes, label, term }: { boxes: number; label: string; term: string }) {
   return (
     <div>
-      <div className="label mb-1">{label} ({boxes})</div>
+      <div className="label mb-1"><Term id={term}>{label}</Term> ({boxes})</div>
       <div className="grid grid-cols-6 gap-0.5" role="img" aria-label={`${boxes} caixas de ${label}`}>
         {Array.from({ length: boxes }, (_, index) => (
           <div key={index} className="relative h-6 border border-line">
@@ -76,50 +79,53 @@ export function Sheet() {
 
   return (
     <motion.article initial="hidden" animate="shown" transition={{ staggerChildren: 0.05 }} className="sheet grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      <div className="no-print md:col-span-2 xl:col-span-3">
+        <CorpBanner corp={watcherCorp(c)} label="Arquivo sob vigilância" />
+      </div>
       <Section title="Informações pessoais" className="md:col-span-2 xl:col-span-3">
-        <h2 className="glitch font-display text-3xl font-bold text-cyan uppercase">{personal.alias || 'Runner sem nome'}</h2>
+        <h2 className="glitch font-spray text-4xl text-accent uppercase" data-text={personal.alias || 'Runner sem nome'}>{personal.alias || 'Runner sem nome'}</h2>
         <p className="mb-2 text-mute">{personal.concept}</p>
         <div className="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
           {fields.map(([label, value]) => (
             <Row key={label} label={label} value={value || '—'} />
           ))}
-          <Row label="Crédito das Ruas" value={personal.streetCred} />
-          <Row label="Notoriedade" value={personal.notoriety} />
-          <Row label="Consciência Pública" value={personal.publicAwareness} />
-          <Row label="Carma" value={Math.max(0, d.karma.remaining)} />
+          <Row label="Crédito das Ruas" term="concept:streetCred" value={personal.streetCred} />
+          <Row label="Notoriedade" term="concept:notoriety" value={personal.notoriety} />
+          <Row label="Consciência Pública" term="concept:publicAwareness" value={personal.publicAwareness} />
+          <Row label="Carma" term="stat:karma" value={Math.max(0, d.karma.remaining)} />
         </div>
       </Section>
 
       <Section title="Atributos">
         {CORE_ATTRIBUTES.map((key) => (
-          <Row key={key} label={ATTRIBUTE_NAMES[key]} value={augmentedText(d.natural[key], d.augmented[key])} />
+          <Row key={key} label={ATTRIBUTE_NAMES[key]} term={`attr:${key}`} value={augmentedText(d.natural[key], d.augmented[key])} />
         ))}
-        <Row label="Trunfo" value={d.edge} />
-        <Row label="Essência" value={d.essence.toFixed(2)} />
-        {isAwakened(c) && <Row label="Magia" value={d.magic} />}
-        {isTechnomancer(c) && <Row label="Ressonância" value={d.resonance} />}
+        <Row label="Trunfo" term="attr:edge" value={d.edge} />
+        <Row label="Essência" term="attr:essence" value={d.essence.toFixed(2)} />
+        {isAwakened(c) && <Row label="Magia" term="attr:magic" value={d.magic} />}
+        {isTechnomancer(c) && <Row label="Ressonância" term="attr:resonance" value={d.resonance} />}
       </Section>
 
       <Section title="Combate">
-        <Row label="Iniciativa" value={initiativeText(d.initiative.natural, d.initiative.value, d.initiative.dice)} />
-        <Row label="Iniciativa na Matriz" value={`${d.matrixAR.value} + ${d.matrixAR.dice}D6`} />
-        <Row label="Iniciativa Astral" value={`${d.astralInitiative.value} + ${d.astralInitiative.dice}D6`} />
-        <Row label="Compostura" value={d.composure} />
-        <Row label="Julgar Intenções" value={d.judgeIntentions} />
-        <Row label="Memória" value={d.memory} />
-        <Row label="Erguer/Carregar" value={d.liftCarry} />
-        <Row label="Movimento" value={`${d.movement.walk}/${d.movement.run}/+${d.movement.sprintPerHit}`} />
-        <Row label="Limite Físico" value={limit('physical')} />
-        <Row label="Limite Mental" value={limit('mental')} />
-        <Row label="Limite Social" value={limit('social')} />
-        <Row label="Armadura" value={d.armor} />
+        <Row label="Iniciativa" term="stat:initiative" value={initiativeText(d.initiative.natural, d.initiative.value, d.initiative.dice)} />
+        <Row label="Iniciativa na Matriz" term="stat:matrix" value={`${d.matrixAR.value} + ${d.matrixAR.dice}D6`} />
+        <Row label="Iniciativa Astral" term="stat:astral" value={`${d.astralInitiative.value} + ${d.astralInitiative.dice}D6`} />
+        <Row label="Compostura" term="stat:composure" value={d.composure} />
+        <Row label="Julgar Intenções" term="stat:judge" value={d.judgeIntentions} />
+        <Row label="Memória" term="stat:memory" value={d.memory} />
+        <Row label="Erguer/Carregar" term="stat:lift" value={d.liftCarry} />
+        <Row label="Movimento" term="stat:movement" value={`${d.movement.walk}/${d.movement.run}/+${d.movement.sprintPerHit}`} />
+        <Row label="Limite Físico" term="stat:limit-physical" value={limit('physical')} />
+        <Row label="Limite Mental" term="stat:limit-mental" value={limit('mental')} />
+        <Row label="Limite Social" term="stat:limit-social" value={limit('social')} />
+        <Row label="Armadura" term="stat:armor" value={d.armor} />
       </Section>
 
       <Section title="Monitor de condição">
         <div className="space-y-3">
-          <Track boxes={d.monitors.physical} label="Físico" />
-          <Track boxes={d.monitors.stun} label="Atordoamento" />
-          <Row label="Caixas em Excesso" value={d.monitors.overflow} />
+          <Track boxes={d.monitors.physical} label="Físico" term="stat:monitor-physical" />
+          <Track boxes={d.monitors.stun} label="Atordoamento" term="stat:monitor-stun" />
+          <Row label="Caixas em Excesso" term="stat:overflow" value={d.monitors.overflow} />
         </div>
       </Section>
 
@@ -127,7 +133,7 @@ export function Sheet() {
         {!allSkills.length && <None />}
         <div className="grid gap-x-6 sm:grid-cols-2">
           {allSkills.map((row) => (
-            <Row key={row.id} label={`${row.name}${row.specialization ? ` (${row.specialization})` : ''}`} value={row.rating} />
+            <Row key={row.id} label={`${row.name}${row.specialization ? ` (${row.specialization})` : ''}`} term={`skill:${row.id}`} value={row.rating} />
           ))}
         </div>
         {groups.length > 0 && <p className="mt-2 text-sm text-mute">Grupos: {groups.map((g) => g.name).join(', ')}</p>}
@@ -160,17 +166,17 @@ export function Sheet() {
 
       {(isAwakened(c) || isTechnomancer(c)) && (
         <Section title={AWAKENING_NAMES[c.awakening.type]}>
-          {c.awakening.tradition && <Row label="Tradição" value={byId(magicData.traditions, c.awakening.tradition)?.name} />}
-          {c.awakening.tradition && <Row label="Resistir ao Dreno" value={d.drainResist} />}
-          {isTechnomancer(c) && <Row label="Resistir ao Enfraquecimento" value={d.fadeResist} />}
-          {c.qualities.some((q) => q.id === 'espirito-mentor') && <Row label="Espírito Mentor" value={byId(magicData.mentorSpirits, c.awakening.mentorSpirit)?.name ?? '—'} />}
+          {c.awakening.tradition && <Row label="Tradição" term="magic:tradition" value={byId(magicData.traditions, c.awakening.tradition)?.name} />}
+          {c.awakening.tradition && <Row label="Resistir ao Dreno" term="stat:drain" value={d.drainResist} />}
+          {isTechnomancer(c) && <Row label="Resistir ao Enfraquecimento" term="stat:fade" value={d.fadeResist} />}
+          {c.qualities.some((q) => q.id === 'espirito-mentor') && <Row label="Espírito Mentor" term="magic:mentor" value={byId(magicData.mentorSpirits, c.awakening.mentorSpirit)?.name ?? '—'} />}
           {isTechnomancer(c) && (
             <>
-              <Row label="Ataque" value={d.persona.attack} />
-              <Row label="Corrupção" value={d.persona.sleaze} />
-              <Row label="Processamento de Dados" value={d.persona.dataProcessing} />
-              <Row label="Firewall" value={d.persona.firewall} />
-              <Row label="Nível de Dispositivo" value={d.persona.deviceRating} />
+              <Row label="Ataque" term="persona:attack" value={d.persona.attack} />
+              <Row label="Corrupção" term="persona:sleaze" value={d.persona.sleaze} />
+              <Row label="Processamento de Dados" term="persona:data" value={d.persona.dataProcessing} />
+              <Row label="Firewall" term="persona:firewall" value={d.persona.firewall} />
+              <Row label="Nível de Dispositivo" term="persona:device" value={d.persona.deviceRating} />
             </>
           )}
         </Section>
@@ -234,8 +240,8 @@ export function Sheet() {
       </Section>
 
       <Section title="IDs, estilo de vida e dinheiro">
-        <Row label="Estilo de vida" value={`${d.nuyen.lifestyle.name} (${c.lifestyle.months} ${c.lifestyle.months > 1 ? 'meses' : 'mês'})`} />
-        <Row label="Neoienes" value={formatNuyen(d.nuyen.starting)} />
+        <Row label="Estilo de vida" term="gear:lifestyle" value={`${d.nuyen.lifestyle.name} (${c.lifestyle.months} ${c.lifestyle.months > 1 ? 'meses' : 'mês'})`} />
+        <Row label="Neoienes" term="stat:nuyen" value={formatNuyen(d.nuyen.starting)} />
       </Section>
 
       <Section title="Contatos">

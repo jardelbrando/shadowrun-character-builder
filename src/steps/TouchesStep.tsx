@@ -25,11 +25,11 @@ export function TouchesStep({ onSheet }: { onSheet: () => void }) {
           ))}
         </div>
       </Panel>
-      <Panel title="Reputação">
+      <Panel title="Reputação" term="concept:reputation">
         <div className="grid gap-3 sm:grid-cols-3">
-          <NumberField label="Crédito das Ruas" value={personal.streetCred} onChange={(value) => edit((c) => void (c.personal.streetCred = value))} />
-          <NumberField label="Notoriedade" value={personal.notoriety} onChange={(value) => edit((c) => void (c.personal.notoriety = value))} />
-          <NumberField label="Consciência Pública" value={personal.publicAwareness} onChange={(value) => edit((c) => void (c.personal.publicAwareness = value))} />
+          <NumberField label="Crédito das Ruas" term="concept:streetCred" value={personal.streetCred} onChange={(value) => edit((c) => void (c.personal.streetCred = value))} />
+          <NumberField label="Notoriedade" term="concept:notoriety" value={personal.notoriety} onChange={(value) => edit((c) => void (c.personal.notoriety = value))} />
+          <NumberField label="Consciência Pública" term="concept:publicAwareness" value={personal.publicAwareness} onChange={(value) => edit((c) => void (c.personal.publicAwareness = value))} />
         </div>
       </Panel>
       <Panel title="História">
