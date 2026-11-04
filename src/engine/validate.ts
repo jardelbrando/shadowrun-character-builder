@@ -10,6 +10,7 @@ import {
   skills,
 } from '../data';
 import type { Character } from '../schema/character';
+import { capacityUsed, childrenOf } from './catalog';
 import {
   CREATION_SKILL_MAX,
   MAX_AUGMENTATION_BONUS,
@@ -209,6 +210,25 @@ export function validate(c: Character, d: Derived): Issue[] {
     if (item.deviceRating > d.level.maxDeviceRating) error('resources', `${item.name || 'Item'}: Nível de Dispositivo acima de ${d.level.maxDeviceRating}.`);
     if (!item.name.trim()) warn('resources', 'Há um item sem nome.');
   }
+  for (const parent of c.gear.filter((item) => item.capacityGiven > 0 || c.gear.some((other) => other.parentId === item.id))) {
+    const used = capacityUsed(c, parent.id);
+    if (used > parent.capacityGiven) error('resources', `${parent.name}: ${used} de Capacidade usada, com ${parent.capacityGiven} disponível.`);
+    const mounts = childrenOf(c, parent.id).map((item) => item.mount).filter((mount) => ['Sobre o cano', 'Sob o cano', 'Cano'].includes(mount));
+    const repeated = mounts.find((mount, index) => mounts.indexOf(mount) !== index);
+    if (repeated) error('resources', `${parent.name}: há dois acessórios no suporte "${repeated}".`);
+  }
+  for (const group of new Set(c.gear.map((item) => item.exclusive).filter(Boolean))) {
+    const items = c.gear.filter((item) => item.exclusive === group);
+    if (items.length < 2) continue;
+    const message = `${items.map((item) => item.name).join(' e ')} não podem ser combinados.`;
+    // O livro abre exceção para versões sem fio de melhorias de Reação.
+    if (group === 'reaction') warn('resources', message);
+    else error('resources', message);
+  }
+  if (c.adeptPowers.some((power) => power.id === 'reflexos-melhorados') && c.gear.some((item) => item.exclusive === 'reaction')) {
+    warn('resources', 'Reflexos Melhorados não combinam com outros aumentos de Iniciativa.');
+  }
+  if (hasQuality(c, 'sistema-sensivel') && c.gear.some((item) => item.augType === 'bio')) error('resources', 'Sistema Sensível rejeita biônicos.');
   if (type !== 'none' && d.essencePenalty > 0) warn('resources', `A perda de Essência reduziu Magia/Ressonância em ${d.essencePenalty}.`);
 
   // Etapa 7: Carma

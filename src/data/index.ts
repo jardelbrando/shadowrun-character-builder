@@ -174,7 +174,6 @@ export const programs = programsJson as Program[];
 export const magicData = magicJson;
 export const lifestyles = lifestylesJson.lifestyles;
 export const grades = lifestylesJson.grades;
-export const gearCategories = lifestylesJson.gearCategories;
 
 export interface GlossaryEntry {
   title: string;

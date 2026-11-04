@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { characterSchema, gearItemSchema, newCharacter, type Character } from '../schema/character';
 import { parseCharacter, serializeCharacter } from '../schema/io';
+import catalogJson from '../data/catalog.json';
 import { setAwakeningType, toggleFreeSkill } from './actions';
+import { buildGearItem, capacityUsed, rebuildGearItem, removeGearItem, weaponDamage, type CatalogEntry } from './catalog';
 import { CORE_ATTRIBUTES, glossary, skillGroups, skills } from '../data';
 import { derive, karmaCost, skillRating } from './derive';
 import { stepCorp, watcherCorp } from './megacorp';
@@ -283,5 +285,99 @@ describe('glossário', () => {
     const entries = Object.values(glossary);
     expect(entries.every((entry) => entry.title && entry.kind && entry.body)).toBe(true);
     expect(Object.keys(glossary).filter((id) => id.startsWith('skill:') && glossary[id].default === undefined)).toEqual([]);
+  });
+});
+
+describe('catálogo', () => {
+  const catalog = catalogJson as CatalogEntry[];
+  const entry = (id: string) => catalog.find((item) => item.id === id)!;
+
+  it('todo item tem descrição, nome e custo válido', () => {
+    expect(catalog.filter((item) => !item.desc || !item.name || !item.section).map((item) => item.id)).toEqual([]);
+    expect(new Set(catalog.map((item) => item.id)).size).toBe(catalog.length);
+  });
+
+  it('traz valores da tabela do livro', () => {
+    expect(entry('ares-predator-v')).toMatchObject({ cost: [725, 0], avail: [5, 0], restriction: 'R', weapon: { acc: '5 (7)', dv: '8F', ap: '–1' } });
+    expect(entry('katana')).toMatchObject({ cost: [1000, 0], weapon: { reach: 1, dv: '(FOR + 3)F', ap: '–3' } });
+    expect(entry('jaqueta-blindada')).toMatchObject({ armor: 12, cost: [1000, 0] });
+    expect(entry('ciber-olhos').levels?.[3]).toMatchObject({ cost: 14000, essence: 0.5, give: 16, avail: 12 });
+  });
+
+  it('melhorias de Reação 2 do exemplo de Beto: custo, Essência e novos cálculos', () => {
+    const c = newCharacter();
+    c.metatype = 'troll';
+    c.gear = [buildGearItem('1', entry('melhorias-de-reacao'), { rating: 2 })];
+    const d = derive(c);
+    expect(c.gear[0].unitCost).toBe(26000);
+    expect(d.essence).toBeCloseTo(5.4);
+    expect(d.bonus.reaction).toBe(2);
+    expect(d.augmented.reaction).toBe(3);
+  });
+
+  it('reflexos cabeados somam Reação e dados de Iniciativa', () => {
+    const c = newCharacter();
+    c.gear = [buildGearItem('1', entry('reflexos-cabeados'), { rating: 2 })];
+    const d = derive(c);
+    expect(c.gear[0].unitCost).toBe(149000);
+    expect(d.essence).toBe(3);
+    expect(d.bonus.reaction).toBe(2);
+    expect(d.initiative.dice).toBe(3);
+  });
+
+  it('alphaware aplica a classe sobre o Nível', () => {
+    const c = newCharacter();
+    c.gear = [buildGearItem('1', entry('reflexos-cabeados'), { rating: 1, grade: 'alpha' })];
+    const d = derive(c);
+    expect(d.essence).toBeCloseTo(4.4);
+    expect(d.nuyen.gearCost).toBe(46800);
+  });
+
+  it('item dentro de cibermembro usa Capacidade, não Essência', () => {
+    const c = newCharacter();
+    const arm = buildGearItem('b', entry('braco-completo-obvio'));
+    const mod = buildGearItem('m', entry('melhoria-forca'), { rating: 3, parent: arm });
+    c.gear = [arm, mod];
+    expect(derive(c).essence).toBe(5);
+    expect(capacityUsed(c, 'b')).toBe(3);
+    c.gear.push(buildGearItem('x', entry('ciber-arma-pistola-pesada'), { parent: arm }), buildGearItem('y', entry('ciber-arma-submetralhadora'), { parent: arm }));
+    expect(capacityUsed(c, 'b')).toBe(17);
+    expect(validate(c, derive(c)).some((i) => i.message.includes('Capacidade usada'))).toBe(true);
+    removeGearItem(c, 'b');
+    expect(c.gear).toEqual([]);
+  });
+
+  it('armadura soma capacete e ampliações, mas só a melhor peça base', () => {
+    const c = newCharacter();
+    c.metatype = 'human';
+    c.gear = [buildGearItem('1', entry('jaqueta-blindada')), buildGearItem('2', entry('colete-blindado')), buildGearItem('3', entry('capacete')), buildGearItem('4', entry('couraca-dermica'), { rating: 2 })];
+    expect(derive(c).armor).toBe(16);
+  });
+
+  it('acessórios no mesmo suporte e ampliações incompatíveis são recusados', () => {
+    const c = newCharacter();
+    const gun = buildGearItem('g', entry('ares-predator-v'));
+    c.gear = [gun, buildGearItem('a', entry('silenciador-supressor'), { parent: gun }), buildGearItem('b', entry('sistema-de-saida-de-gas'), { rating: 1, parent: gun })];
+    expect(validate(c, derive(c)).some((i) => i.message.includes('dois acessórios'))).toBe(true);
+    c.gear = [buildGearItem('1', entry('couraca-dermica'), { rating: 1 }), buildGearItem('2', entry('ortopele'), { rating: 1 })];
+    expect(validate(c, derive(c)).some((i) => i.message.includes('não podem ser combinados'))).toBe(true);
+  });
+
+  it('arma inteligente interna dobra o custo da arma', () => {
+    const gun = buildGearItem('g', entry('colt-america-l36'));
+    const smart = buildGearItem('s', entry('sistema-de-arma-inteligente-interno'), { parent: gun });
+    expect(smart.unitCost).toBe(320);
+    expect(smart.availability).toBe(6);
+  });
+
+  it('mudar o Nível recalcula o item', () => {
+    const item = buildGearItem('1', entry('ortopele'), { rating: 1, quantity: 1 });
+    const next = rebuildGearItem(item, entry('ortopele'), 3, 'alpha');
+    expect(next).toMatchObject({ id: '1', rating: 3, unitCost: 18000, armorBonus: 3, grade: 'alpha' });
+  });
+
+  it('calcula dano com Força', () => {
+    expect(weaponDamage('(FOR + 3)F', 5)).toBe('8F');
+    expect(weaponDamage('8F', 5)).toBe('8F');
   });
 });

@@ -15,7 +15,9 @@ import {
   skillGroups,
   spells,
 } from '../data';
+import { childrenOf, weaponDamage } from '../engine/catalog';
 import { adeptPowerCost, effectiveSkills, gearTotals, isAwakened, isTechnomancer, qualityValue } from '../engine/derive';
+import type { GearItem } from '../schema/character';
 import { watcherCorp } from '../engine/megacorp';
 import { useCharacter } from '../store';
 import { CorpBanner } from '../ui/CorpBanner';
@@ -60,10 +62,54 @@ function Track({ boxes, label, term }: { boxes: number; label: string; term: str
 
 const None = () => <p className="text-mute">—</p>;
 
+function WeaponTable({ items, melee = false, strength = 0 }: { items: GearItem[]; melee?: boolean; strength?: number }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[32rem] text-left text-sm">
+        <thead className="label">
+          <tr>
+            <th className="py-1 font-normal">Arma</th>
+            <th className="font-normal"><Term id="gear:accuracy">Pre</Term></th>
+            <th className="font-normal"><Term id="gear:damage">Dano</Term></th>
+            <th className="font-normal"><Term id="gear:ap">PA</Term></th>
+            {melee ? <th className="font-normal"><Term id="gear:reach">Alcance</Term></th> : <th className="font-normal"><Term id="gear:mode">Modo</Term></th>}
+            {!melee && <th className="font-normal"><Term id="gear:rc">CR</Term></th>}
+            {!melee && <th className="font-normal"><Term id="gear:ammoType">Munição</Term></th>}
+          </tr>
+        </thead>
+        <tbody className="font-mono">
+          {items.map((item) => (
+            <tr key={item.id} className="border-t border-line/50">
+              <td className="py-1 pr-2 font-body">{item.name}</td>
+              <td>{item.weapon?.acc}</td>
+              <td>{weaponDamage(item.weapon?.dv ?? '', strength)}</td>
+              <td>{item.weapon?.ap}</td>
+              {melee ? <td>{item.weapon?.reach ?? 0}</td> : <td>{item.weapon?.mode}</td>}
+              {!melee && <td>{item.weapon?.rc}</td>}
+              {!melee && <td>{item.weapon?.ammo}</td>}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export function Sheet() {
   const { character: c, derived: d } = useCharacter();
   const { personal } = c;
   const allSkills = effectiveSkills(c);
+  const childrenText = (item: GearItem) => childrenOf(c, item.id).map((child) => child.name).join(', ');
+  const itemLabel = (item: GearItem) => {
+    const extras = childrenText(item);
+    return `${item.quantity > 1 ? `${item.quantity}x ` : ''}${item.name || 'Item'}${item.rating ? ` ${item.rating}` : ''}${item.grade === 'alpha' ? ' (alphaware)' : ''}${extras ? ` [${extras}]` : ''}`;
+  };
+  const roots = c.gear.filter((item) => !item.parentId);
+  const ranged = roots.filter((item) => item.weapon && item.weapon.type !== 'melee');
+  const melee = roots.filter((item) => item.weapon?.type === 'melee');
+  const armorItems = roots.filter((item) => (item.armor > 0 || item.armorBonus > 0) && !item.augType);
+  const augmentations = roots.filter((item) => item.augType || item.essence > 0);
+  const otherGear = roots.filter((item) => !ranged.includes(item) && !melee.includes(item) && !armorItems.includes(item) && !augmentations.includes(item));
   const groups = skillGroups.filter((group) => allSkills.some((row) => row.group === group.name));
   const limit = (key: keyof typeof d.limits) => (d.limitBonus[key] ? `${d.limits[key]} (${d.limits[key] + d.limitBonus[key]})` : d.limits[key]);
   const fields: [string, string][] = [
@@ -229,15 +275,39 @@ export function Sheet() {
         </Section>
       )}
 
-      <Section title="Equipamentos e ampliações" className="md:col-span-2">
-        {!c.gear.length && <None />}
-        <div className="grid gap-x-6 sm:grid-cols-2">
-          {c.gear.map((item) => {
-            const totals = gearTotals(item);
-            return <Row key={item.id} label={`${item.quantity > 1 ? `${item.quantity}x ` : ''}${item.name || 'Item'}`} value={totals.essence > 0 ? `Ess ${totals.essence.toFixed(2)}` : item.category} />;
-          })}
-        </div>
-      </Section>
+      {ranged.length > 0 && (
+        <Section title="Armas à distância" className="md:col-span-2 xl:col-span-3">
+          <WeaponTable items={ranged} />
+        </Section>
+      )}
+
+      {melee.length > 0 && (
+        <Section title="Armas corpo a corpo" className="md:col-span-2">
+          <WeaponTable items={melee} melee strength={d.augmented.strength} />
+        </Section>
+      )}
+
+      {armorItems.length > 0 && (
+        <Section title="Armadura">
+          {armorItems.map((item) => <Row key={item.id} label={itemLabel(item)} term="stat:armor" value={item.armor || `+${item.armorBonus}`} />)}
+        </Section>
+      )}
+
+      {augmentations.length > 0 && (
+        <Section title="Ampliações" className="md:col-span-2">
+          <div className="grid gap-x-6 sm:grid-cols-2">
+            {augmentations.map((item) => <Row key={item.id} label={itemLabel(item)} value={`Ess ${gearTotals(item).essence.toFixed(2)}`} />)}
+          </div>
+        </Section>
+      )}
+
+      {otherGear.length > 0 && (
+        <Section title="Equipamentos" className="md:col-span-2">
+          <div className="grid gap-x-6 sm:grid-cols-2">
+            {otherGear.map((item) => <Row key={item.id} label={itemLabel(item)} value={item.category} />)}
+          </div>
+        </Section>
+      )}
 
       <Section title="IDs, estilo de vida e dinheiro">
         <Row label="Estilo de vida" term="gear:lifestyle" value={`${d.nuyen.lifestyle.name} (${c.lifestyle.months} ${c.lifestyle.months > 1 ? 'meses' : 'mês'})`} />

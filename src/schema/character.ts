@@ -74,6 +74,32 @@ export const gearItemSchema = z.object({
   initiativeDice: z.number().int().min(0).default(0),
   attributeBonuses: z.partialRecord(z.enum(CORE_ATTRIBUTES), z.number().int()).default({}),
   notes: z.string().default(''),
+  // Campos abaixo vêm do catálogo; itens personalizados ficam com os valores padrão.
+  catalogId: z.string().default(''),
+  rating: z.number().int().min(0).default(0),
+  parentId: z.string().default(''),
+  armorBonus: z.number().int().min(0).default(0),
+  limitBonuses: z.partialRecord(z.enum(['physical', 'mental', 'social']), z.number().int()).default({}),
+  lifestyleBonus: z.number().min(0).default(0),
+  capacityGiven: z.number().int().min(0).default(0),
+  capacityUsed: z.number().int().min(0).default(0),
+  mount: z.string().default(''),
+  modGroup: z.string().default(''),
+  augType: z.enum(['', 'cyber', 'bio']).default(''),
+  exclusive: z.string().default(''),
+  weapon: z
+    .object({
+      type: z.enum(['melee', 'ranged', 'thrown']),
+      acc: z.string(),
+      dv: z.string(),
+      ap: z.string(),
+      reach: z.number().optional(),
+      mode: z.string().optional(),
+      rc: z.string().optional(),
+      ammo: z.string().optional(),
+    })
+    .nullable()
+    .default(null),
 });
 
 const contact = z.object({

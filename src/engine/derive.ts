@@ -66,7 +66,8 @@ export function gearTotals(item: GearItem) {
   const grade = byId(grades, item.grade) ?? grades[0];
   return {
     cost: item.unitCost * grade.cost * item.quantity,
-    essence: item.essence * grade.essence * item.quantity,
+    // Dentro de um item com Capacidade, a ampliação não consome Essência.
+    essence: item.parentId ? 0 : item.essence * grade.essence * item.quantity,
     availability: item.availability + grade.availability,
   };
 }
@@ -105,7 +106,9 @@ export const isTechnomancer = (c: Character) => c.awakening.type === 'technomanc
 export const isAwakened = (c: Character) => isCaster(c) || isAdept(c);
 
 function essenceSpent(c: Character) {
-  return c.gear.reduce((sum, item) => sum + gearTotals(item).essence, 0);
+  // Sistema Sensível dobra a Essência perdida com ciber-itens.
+  const sensitive = hasQuality(c, 'sistema-sensivel');
+  return c.gear.reduce((sum, item) => sum + gearTotals(item).essence * (sensitive && item.augType === 'cyber' ? 2 : 1), 0);
 }
 
 function augmentationBonus(c: Character, key: CoreAttribute) {
@@ -274,7 +277,8 @@ export function derive(c: Character) {
 
   // --- Neoienes ---
   const lifestyle = byId(lifestyles, c.lifestyle.id) ?? lifestyles[0];
-  const lifestyleCost = lifestyle.cost * (metatype?.lifestyleMultiplier ?? 1) * c.lifestyle.months;
+  const lifestyleBonus = c.gear.reduce((sum, item) => sum + item.lifestyleBonus, 0);
+  const lifestyleCost = lifestyle.cost * ((metatype?.lifestyleMultiplier ?? 1) + lifestyleBonus) * c.lifestyle.months;
   const gearCost = c.gear.reduce((sum, item) => sum + gearTotals(item).cost, 0);
   const programCost = c.programs.reduce((sum, id) => sum + (byId(programs, id)?.cost ?? 0), 0);
   const nuyenTotal = resourcesFor(c, prio.resources) + c.karmaToNuyen * KARMA_TO_NUYEN_RATE;
@@ -294,6 +298,11 @@ export function derive(c: Character) {
     limitBonus.physical += q.limits.physical;
     limitBonus.mental += q.limits.mental;
     limitBonus.social += q.limits.social;
+  }
+  for (const item of c.gear) {
+    limitBonus.physical += item.limitBonuses.physical ?? 0;
+    limitBonus.mental += item.limitBonuses.mental ?? 0;
+    limitBonus.social += item.limitBonuses.social ?? 0;
   }
   for (const p of c.adeptPowers) {
     if (p.id === 'potencial-melhorado' && p.choice in limitBonus) limitBonus[p.choice as LimitKey] += p.rating;
@@ -315,7 +324,10 @@ export function derive(c: Character) {
   const gearDice = c.gear.reduce((sum, item) => sum + item.initiativeDice * item.quantity, 0);
   const initiativeDice = Math.min(5, 1 + gearDice + reflexes);
   const willToLive = c.qualities.find((q) => q.id === 'desejo-de-viver')?.rating ?? 0;
-  const armor = Math.max(0, ...c.gear.map((item) => item.armor)) + (metatype?.dermalArmor ?? 0);
+  // A melhor armadura vestida soma com capacetes, escudos e ampliações de pele e ossos.
+  const armorWorn = Math.max(0, ...c.gear.map((item) => item.armor));
+  const armorBonus = c.gear.reduce((sum, item) => sum + item.armorBonus * item.quantity, 0);
+  const armor = armorWorn + armorBonus + (metatype?.dermalArmor ?? 0);
   const persona = {
     attack: natural.charisma,
     sleaze: natural.intuition,

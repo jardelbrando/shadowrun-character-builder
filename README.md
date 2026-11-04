@@ -33,6 +33,8 @@ React, TypeScript e Vite · Zustand (estado) · Zod (validação do JSON) · Mot
 | `src/engine/derive.ts` | Cálculos: pontos, Carma, neoienes, Essência, limites, Iniciativa e monitores |
 | `src/engine/validate.ts` | Regras de criação, com pendências agrupadas por etapa |
 | `src/engine/book-examples.test.ts` | Testes com os exemplos do livro (Jefferson, Beto e Clara) |
+| `src/data/catalog.json` | 454 itens do livro: armas, acessórios, armaduras, eletrônicos, ferramentas, veículos, ciber-itens e biônicos. É carregado só ao abrir a etapa de Recursos |
+| `src/engine/catalog.ts` | Monta o item escolhido: Nível, classe, Capacidade e modificações |
 | `src/engine/megacorp.ts` | Escolhe a megacorp de cada etapa e a que vigia o personagem, com dados em `src/data/megacorps.json` |
 | `src/steps/` | As nove etapas do livro |
 | `src/sheet/` | Ficha final, também usada na impressão |
@@ -59,11 +61,11 @@ Confira no livro: os resumos de **Vitalidade** e **Arrasado** apontam para a des
 
 ## Ainda não incluído
 
-- Catálogo de equipamentos, ciber-itens e biônicos: as tabelas do PDF saem desalinhadas na extração. Por enquanto cada item é preenchido à mão, e as regras de Disponibilidade, Nível de Dispositivo, classe, Essência e bônus são aplicadas.
 - Catálogo de rituais e preparativos: hoje são campos livres, com custo e limite aplicados.
 - Dividir grupos de perícias na Etapa 7.
 - Progressão depois da criação e iniciação/submersão.
-- Armadura empilhada: a ficha mostra a maior armadura mais a dérmica.
+- Efeitos situacionais de equipamentos: os itens registram o efeito na descrição, mas só bônus permanentes entram nos cálculos.
+- Personalização de cibermembros: a tabela de Força e Agilidade acima de 3 ainda não está no catálogo.
 
 ## Direitos autorais
 

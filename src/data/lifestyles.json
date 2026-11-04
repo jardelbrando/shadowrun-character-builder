@@ -58,15 +58,5 @@
       "availability": 2,
       "cost": 1.2
     }
-  ],
-  "gearCategories": [
-    "Armas",
-    "Armadura",
-    "Ampliação",
-    "Eletrônicos",
-    "Veículos",
-    "SINs e licenças",
-    "Magia",
-    "Outros"
   ]
 }
