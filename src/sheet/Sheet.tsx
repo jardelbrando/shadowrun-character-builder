@@ -1,0 +1,263 @@
+import type { ReactNode } from 'react';
+import { motion } from 'motion/react';
+import {
+  ATTRIBUTE_NAMES,
+  AWAKENING_NAMES,
+  CORE_ATTRIBUTES,
+  adeptPowers,
+  byId,
+  complexForms,
+  knowledgeCategories,
+  magicData,
+  programs,
+  qualities,
+  skillGroups,
+  spells,
+} from '../data';
+import { adeptPowerCost, effectiveSkills, gearTotals, isAwakened, isTechnomancer, qualityValue } from '../engine/derive';
+import { useCharacter } from '../store';
+import { formatNuyen } from '../ui/primitives';
+import { augmentedText, initiativeText } from './format';
+
+function Section({ title, children, className = '' }: { title: string; children: ReactNode; className?: string }) {
+  return (
+    <motion.section
+      variants={{ hidden: { opacity: 0, y: 14 }, shown: { opacity: 1, y: 0 } }}
+      className={`sheet-section cut border border-line bg-panel/90 p-3 ${className}`}
+    >
+      <h3 className="mb-2 font-display text-xs font-bold tracking-widest text-cyan uppercase">{title}</h3>
+      {children}
+    </motion.section>
+  );
+}
+
+function Row({ label, value }: { label: ReactNode; value: ReactNode }) {
+  return (
+    <div className="flex items-baseline justify-between gap-2 border-b border-line/50 py-0.5">
+      <span className="text-mute">{label}</span>
+      <span className="text-right font-mono">{value}</span>
+    </div>
+  );
+}
+
+function Track({ boxes, label }: { boxes: number; label: string }) {
+  return (
+    <div>
+      <div className="label mb-1">{label} ({boxes})</div>
+      <div className="grid grid-cols-6 gap-0.5" role="img" aria-label={`${boxes} caixas de ${label}`}>
+        {Array.from({ length: boxes }, (_, index) => (
+          <div key={index} className="relative h-6 border border-line">
+            {(index + 1) % 3 === 0 && <span className="absolute right-0.5 bottom-0 font-mono text-[0.6rem] text-mute">–{(index + 1) / 3}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const None = () => <p className="text-mute">—</p>;
+
+export function Sheet() {
+  const { character: c, derived: d } = useCharacter();
+  const { personal } = c;
+  const allSkills = effectiveSkills(c);
+  const groups = skillGroups.filter((group) => allSkills.some((row) => row.group === group.name));
+  const limit = (key: keyof typeof d.limits) => (d.limitBonus[key] ? `${d.limits[key]} (${d.limits[key] + d.limitBonus[key]})` : d.limits[key]);
+  const fields: [string, string][] = [
+    ['Meta-tipo', d.metatype?.name ?? '—'],
+    ['Etnia', personal.ethnicity],
+    ['Idade', personal.age],
+    ['Sexo', personal.sex],
+    ['Altura', personal.height],
+    ['Peso', personal.weight],
+    ['Nome verdadeiro', personal.realName],
+    ['Jogador', personal.player],
+  ];
+
+  return (
+    <motion.article initial="hidden" animate="shown" transition={{ staggerChildren: 0.05 }} className="sheet grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+      <Section title="Informações pessoais" className="md:col-span-2 xl:col-span-3">
+        <h2 className="glitch font-display text-3xl font-bold text-cyan uppercase">{personal.alias || 'Runner sem nome'}</h2>
+        <p className="mb-2 text-mute">{personal.concept}</p>
+        <div className="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+          {fields.map(([label, value]) => (
+            <Row key={label} label={label} value={value || '—'} />
+          ))}
+          <Row label="Crédito das Ruas" value={personal.streetCred} />
+          <Row label="Notoriedade" value={personal.notoriety} />
+          <Row label="Consciência Pública" value={personal.publicAwareness} />
+          <Row label="Carma" value={Math.max(0, d.karma.remaining)} />
+        </div>
+      </Section>
+
+      <Section title="Atributos">
+        {CORE_ATTRIBUTES.map((key) => (
+          <Row key={key} label={ATTRIBUTE_NAMES[key]} value={augmentedText(d.natural[key], d.augmented[key])} />
+        ))}
+        <Row label="Trunfo" value={d.edge} />
+        <Row label="Essência" value={d.essence.toFixed(2)} />
+        {isAwakened(c) && <Row label="Magia" value={d.magic} />}
+        {isTechnomancer(c) && <Row label="Ressonância" value={d.resonance} />}
+      </Section>
+
+      <Section title="Combate">
+        <Row label="Iniciativa" value={initiativeText(d.initiative.natural, d.initiative.value, d.initiative.dice)} />
+        <Row label="Iniciativa na Matriz" value={`${d.matrixAR.value} + ${d.matrixAR.dice}D6`} />
+        <Row label="Iniciativa Astral" value={`${d.astralInitiative.value} + ${d.astralInitiative.dice}D6`} />
+        <Row label="Compostura" value={d.composure} />
+        <Row label="Julgar Intenções" value={d.judgeIntentions} />
+        <Row label="Memória" value={d.memory} />
+        <Row label="Erguer/Carregar" value={d.liftCarry} />
+        <Row label="Movimento" value={`${d.movement.walk}/${d.movement.run}/+${d.movement.sprintPerHit}`} />
+        <Row label="Limite Físico" value={limit('physical')} />
+        <Row label="Limite Mental" value={limit('mental')} />
+        <Row label="Limite Social" value={limit('social')} />
+        <Row label="Armadura" value={d.armor} />
+      </Section>
+
+      <Section title="Monitor de condição">
+        <div className="space-y-3">
+          <Track boxes={d.monitors.physical} label="Físico" />
+          <Track boxes={d.monitors.stun} label="Atordoamento" />
+          <Row label="Caixas em Excesso" value={d.monitors.overflow} />
+        </div>
+      </Section>
+
+      <Section title="Perícias Ativas" className="md:col-span-2 xl:col-span-2">
+        {!allSkills.length && <None />}
+        <div className="grid gap-x-6 sm:grid-cols-2">
+          {allSkills.map((row) => (
+            <Row key={row.id} label={`${row.name}${row.specialization ? ` (${row.specialization})` : ''}`} value={row.rating} />
+          ))}
+        </div>
+        {groups.length > 0 && <p className="mt-2 text-sm text-mute">Grupos: {groups.map((g) => g.name).join(', ')}</p>}
+      </Section>
+
+      <Section title="Conhecimento e Idiomas">
+        {c.languages.map((language) => (
+          <Row key={language.id} label={language.name || 'Idioma'} value={language.native ? 'N' : language.points + language.karmaRanks} />
+        ))}
+        {c.knowledge.map((entry) => (
+          <Row key={entry.id} label={`${entry.name || 'Conhecimento'} (${byId(knowledgeCategories, entry.category)?.name})`} value={entry.points + entry.karmaRanks} />
+        ))}
+        {!c.languages.length && !c.knowledge.length && <None />}
+      </Section>
+
+      <Section title="Qualidades">
+        {!c.qualities.length && <None />}
+        {c.qualities.map((entry, index) => {
+          const quality = byId(qualities, entry.id);
+          const detail = [entry.option, entry.note, entry.attribute && ATTRIBUTE_NAMES[entry.attribute]].filter(Boolean).join(', ');
+          return (
+            <Row
+              key={`${entry.id}-${index}`}
+              label={`${quality?.name ?? entry.id}${quality?.maxRating ? ` ${entry.rating}` : ''}${detail ? ` (${detail})` : ''}`}
+              value={`${quality?.kind === 'positive' ? '–' : '+'}${qualityValue(entry)}`}
+            />
+          );
+        })}
+      </Section>
+
+      {(isAwakened(c) || isTechnomancer(c)) && (
+        <Section title={AWAKENING_NAMES[c.awakening.type]}>
+          {c.awakening.tradition && <Row label="Tradição" value={byId(magicData.traditions, c.awakening.tradition)?.name} />}
+          {c.awakening.tradition && <Row label="Resistir ao Dreno" value={d.drainResist} />}
+          {isTechnomancer(c) && <Row label="Resistir ao Enfraquecimento" value={d.fadeResist} />}
+          {c.qualities.some((q) => q.id === 'espirito-mentor') && <Row label="Espírito Mentor" value={byId(magicData.mentorSpirits, c.awakening.mentorSpirit)?.name ?? '—'} />}
+          {isTechnomancer(c) && (
+            <>
+              <Row label="Ataque" value={d.persona.attack} />
+              <Row label="Corrupção" value={d.persona.sleaze} />
+              <Row label="Processamento de Dados" value={d.persona.dataProcessing} />
+              <Row label="Firewall" value={d.persona.firewall} />
+              <Row label="Nível de Dispositivo" value={d.persona.deviceRating} />
+            </>
+          )}
+        </Section>
+      )}
+
+      {c.spells.length + c.formulae.length > 0 && (
+        <Section title="Feitiços, rituais e preparativos" className="md:col-span-2">
+          <div className="grid gap-x-6 sm:grid-cols-2">
+            {c.spells.map((id) => {
+              const spell = byId(spells, id);
+              return <Row key={id} label={spell?.name ?? id} value={`${spell?.type} ${spell?.range} ${spell?.duration} ${spell?.drain}`} />;
+            })}
+            {c.formulae.map((formula) => (
+              <Row key={formula.id} label={formula.name || 'Fórmula'} value={formula.kind === 'ritual' ? 'Ritual' : 'Preparativo'} />
+            ))}
+          </div>
+        </Section>
+      )}
+
+      {c.complexForms.length > 0 && (
+        <Section title="Formas complexas">
+          {c.complexForms.map((id) => {
+            const form = byId(complexForms, id);
+            return <Row key={id} label={form?.name ?? id} value={`${form?.duration} VE ${form?.fade}`} />;
+          })}
+        </Section>
+      )}
+
+      {c.adeptPowers.length > 0 && (
+        <Section title="Poderes de adepto">
+          {c.adeptPowers.map((power) => {
+            const data = byId(adeptPowers, power.id);
+            const rated = data?.perRating || data?.costByRating;
+            return <Row key={power.id} label={`${data?.name ?? power.id}${rated ? ` ${power.rating}` : ''}${power.choice ? ` (${ATTRIBUTE_NAMES[power.choice] ?? power.choice})` : ''}`} value={`${adeptPowerCost(power.id, power.rating)} PP`} />;
+          })}
+        </Section>
+      )}
+
+      {c.spirits.length + c.sprites.length + c.foci.length > 0 && (
+        <Section title="Aliados e focos">
+          {c.spirits.map((spirit) => <Row key={spirit.id} label={`Espírito de ${spirit.type} (Poder ${d.magic})`} value={`${spirit.services} serviços`} />)}
+          {c.sprites.map((sprite) => <Row key={sprite.id} label={`Sprite de ${sprite.type} (Nível ${d.resonance})`} value={`${sprite.tasks} tarefas`} />)}
+          {c.foci.map((focus) => <Row key={focus.id} label={focus.name || byId(magicData.focusTypes, focus.type)?.name} value={`Poder ${focus.force}`} />)}
+        </Section>
+      )}
+
+      {c.programs.length > 0 && (
+        <Section title="Programas">
+          <p>{c.programs.map((id) => byId(programs, id)?.name).join(', ')}</p>
+        </Section>
+      )}
+
+      <Section title="Equipamentos e ampliações" className="md:col-span-2">
+        {!c.gear.length && <None />}
+        <div className="grid gap-x-6 sm:grid-cols-2">
+          {c.gear.map((item) => {
+            const totals = gearTotals(item);
+            return <Row key={item.id} label={`${item.quantity > 1 ? `${item.quantity}x ` : ''}${item.name || 'Item'}`} value={totals.essence > 0 ? `Ess ${totals.essence.toFixed(2)}` : item.category} />;
+          })}
+        </div>
+      </Section>
+
+      <Section title="IDs, estilo de vida e dinheiro">
+        <Row label="Estilo de vida" value={`${d.nuyen.lifestyle.name} (${c.lifestyle.months} ${c.lifestyle.months > 1 ? 'meses' : 'mês'})`} />
+        <Row label="Neoienes" value={formatNuyen(d.nuyen.starting)} />
+      </Section>
+
+      <Section title="Contatos">
+        {!c.contacts.length && <None />}
+        {c.contacts.map((contact) => (
+          <Row key={contact.id} label={`${contact.name || 'Contato'}${contact.role ? ` (${contact.role})` : ''}`} value={`C${contact.connection} / L${contact.loyalty}`} />
+        ))}
+      </Section>
+
+      {d.metatype && d.metatype.racial.length > 0 && (
+        <Section title="Bônus raciais">
+          <p>{d.metatype.racial.join(' · ')}</p>
+        </Section>
+      )}
+
+      {(personal.background || personal.notes) && (
+        <Section title="Histórico" className="md:col-span-2 xl:col-span-3">
+          <p className="whitespace-pre-wrap">{personal.background}</p>
+          {personal.notes && <p className="mt-2 whitespace-pre-wrap text-mute">{personal.notes}</p>}
+        </Section>
+      )}
+    </motion.article>
+  );
+}
+

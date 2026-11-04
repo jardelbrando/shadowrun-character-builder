@@ -1,0 +1,72 @@
+{
+  "lifestyles": [
+    {
+      "id": "street",
+      "name": "Rua",
+      "cost": 0,
+      "dice": 1,
+      "multiplier": 20
+    },
+    {
+      "id": "squatter",
+      "name": "Muquifo",
+      "cost": 500,
+      "dice": 2,
+      "multiplier": 40
+    },
+    {
+      "id": "low",
+      "name": "Baixo",
+      "cost": 2000,
+      "dice": 3,
+      "multiplier": 60
+    },
+    {
+      "id": "middle",
+      "name": "Médio",
+      "cost": 5000,
+      "dice": 4,
+      "multiplier": 100
+    },
+    {
+      "id": "high",
+      "name": "Alto",
+      "cost": 10000,
+      "dice": 5,
+      "multiplier": 500
+    },
+    {
+      "id": "luxury",
+      "name": "Luxo",
+      "cost": 100000,
+      "dice": 6,
+      "multiplier": 1000
+    }
+  ],
+  "grades": [
+    {
+      "id": "standard",
+      "name": "Padrão",
+      "essence": 1,
+      "availability": 0,
+      "cost": 1
+    },
+    {
+      "id": "alpha",
+      "name": "Alphaware",
+      "essence": 0.8,
+      "availability": 2,
+      "cost": 1.2
+    }
+  ],
+  "gearCategories": [
+    "Armas",
+    "Armadura",
+    "Ampliação",
+    "Eletrônicos",
+    "Veículos",
+    "SINs e licenças",
+    "Magia",
+    "Outros"
+  ]
+}

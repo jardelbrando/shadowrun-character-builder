@@ -1,0 +1,47 @@
+[
+  {
+    "id": "street",
+    "name": "Runner de Rua",
+    "karma": 13,
+    "qualityLimit": 13,
+    "maxDeviceRating": 4,
+    "maxAvailability": 10,
+    "maxKarmaToNuyen": 5,
+    "contactKarmaPerCharisma": 3,
+    "resources": {
+      "A": 75000,
+      "B": 50000,
+      "C": 25000,
+      "D": 15000,
+      "E": 6000
+    }
+  },
+  {
+    "id": "experienced",
+    "name": "Runner Experiente",
+    "karma": 25,
+    "qualityLimit": 25,
+    "maxDeviceRating": 6,
+    "maxAvailability": 12,
+    "maxKarmaToNuyen": 10,
+    "contactKarmaPerCharisma": 3,
+    "resources": null
+  },
+  {
+    "id": "prime",
+    "name": "Runner Principal",
+    "karma": 35,
+    "qualityLimit": 35,
+    "maxDeviceRating": 6,
+    "maxAvailability": 15,
+    "maxKarmaToNuyen": 25,
+    "contactKarmaPerCharisma": 6,
+    "resources": {
+      "A": 500000,
+      "B": 325000,
+      "C": 210000,
+      "D": 150000,
+      "E": 100000
+    }
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "id": "bomba-de-estatica",
+    "name": "Bomba de Estática",
+    "target": "Pessoal",
+    "duration": "I",
+    "fade": "N + 2"
+  },
+  {
+    "id": "canal-de-ressonancia",
+    "name": "Canal de Ressonância",
+    "target": "Dispositivo",
+    "duration": "S",
+    "fade": "N – 1"
+  },
+  {
+    "id": "difusao-de-atributo-da-matriz",
+    "name": "Difusão de [Atributo da Matriz]",
+    "target": "Dispositivo",
+    "duration": "S",
+    "fade": "N + 1"
+  },
+  {
+    "id": "editor",
+    "name": "Editor",
+    "target": "Arquivo",
+    "duration": "P",
+    "fade": "N + 2"
+  },
+  {
+    "id": "ferrao-de-ressonancia",
+    "name": "Ferrão de Ressonância",
+    "target": "Dispositivo",
+    "duration": "I",
+    "fade": "N + 0"
+  },
+  {
+    "id": "grade-transcendental",
+    "name": "Grade Transcendental",
+    "target": "Pessoal",
+    "duration": "I",
+    "fade": "N – 3"
+  },
+  {
+    "id": "infusao-de-atributo-da-matriz",
+    "name": "Infusão de [Atributo da Matriz]",
+    "target": "Dispositivo",
+    "duration": "S",
+    "fade": "N + 1"
+  },
+  {
+    "id": "limpador",
+    "name": "Limpador",
+    "target": "Persona",
+    "duration": "P",
+    "fade": "N + 1"
+  },
+  {
+    "id": "pontos",
+    "name": "Pontos",
+    "target": "Sprite",
+    "duration": "P",
+    "fade": "N – 2"
+  },
+  {
+    "id": "revelador",
+    "name": "Revelador",
+    "target": "Persona",
+    "duration": "P",
+    "fade": "N – 2"
+  },
+  {
+    "id": "tempestade-de-pulso",
+    "name": "Tempestade de Pulso",
+    "target": "Persona",
+    "duration": "I",
+    "fade": "N + 0"
+  },
+  {
+    "id": "titereiro",
+    "name": "Titereiro",
+    "target": "Dispositivo",
+    "duration": "I",
+    "fade": "N + 4"
+  },
+  {
+    "id": "veu-de-estatica",
+    "name": "Véu de Estática",
+    "target": "Persona",
+    "duration": "S",
+    "fade": "N – 1"
+  },
+  {
+    "id": "veu-de-ressonancia",
+    "name": "Véu de Ressonância",
+    "target": "Dispositivo",
+    "duration": "S",
+    "fade": "N – 1"
+  }
+]

@@ -1,0 +1,556 @@
+{
+  "skills": [
+    {
+      "id": "adestrar-animais",
+      "name": "Adestrar Animais",
+      "attribute": "charisma"
+    },
+    {
+      "id": "alquimia",
+      "name": "Alquimia",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "arcana",
+      "name": "Arcana",
+      "attribute": "logic"
+    },
+    {
+      "id": "arma-a-distancia-exotica",
+      "name": "Arma a Distância Exótica",
+      "attribute": "agility"
+    },
+    {
+      "id": "arma-corpo-a-corpo-exotica",
+      "name": "Arma Corpo a Corpo Exótica",
+      "attribute": "agility"
+    },
+    {
+      "id": "armas-de-arremesso",
+      "name": "Armas de Arremesso",
+      "attribute": "agility"
+    },
+    {
+      "id": "armas-de-cano-longo",
+      "name": "Armas de Cano Longo",
+      "attribute": "agility"
+    },
+    {
+      "id": "armas-pesadas",
+      "name": "Armas Pesadas",
+      "attribute": "agility"
+    },
+    {
+      "id": "armeiro",
+      "name": "Armeiro",
+      "attribute": "logic"
+    },
+    {
+      "id": "arquearia",
+      "name": "Arquearia",
+      "attribute": "agility"
+    },
+    {
+      "id": "arte-da-fuga",
+      "name": "Arte da Fuga",
+      "attribute": "agility"
+    },
+    {
+      "id": "artesao",
+      "name": "Artesão",
+      "attribute": "intuition"
+    },
+    {
+      "id": "artifice",
+      "name": "Artífice",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "artilharia",
+      "name": "Artilharia",
+      "attribute": "agility"
+    },
+    {
+      "id": "automaticas",
+      "name": "Automáticas",
+      "attribute": "agility"
+    },
+    {
+      "id": "banimento",
+      "name": "Banimento",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "bastoes",
+      "name": "Bastões",
+      "attribute": "agility"
+    },
+    {
+      "id": "biotecnologia",
+      "name": "Biotecnologia",
+      "attribute": "logic"
+    },
+    {
+      "id": "chaveiro",
+      "name": "Chaveiro",
+      "attribute": "agility"
+    },
+    {
+      "id": "cibercombate",
+      "name": "Cibercombate",
+      "attribute": "logic"
+    },
+    {
+      "id": "cibertecnologia",
+      "name": "Cibertecnologia",
+      "attribute": "logic"
+    },
+    {
+      "id": "combate-astral",
+      "name": "Combate Astral",
+      "attribute": "willpower"
+    },
+    {
+      "id": "combate-desarmado",
+      "name": "Combate Desarmado",
+      "attribute": "agility"
+    },
+    {
+      "id": "compilar",
+      "name": "Compilar",
+      "attribute": "resonance",
+      "restricted": "resonance"
+    },
+    {
+      "id": "computador",
+      "name": "Computador",
+      "attribute": "logic"
+    },
+    {
+      "id": "conjuracao",
+      "name": "Conjuração",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "conjuracao-ritual",
+      "name": "Conjuração Ritual",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "contramagica",
+      "name": "Contramágica",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "corrida",
+      "name": "Corrida",
+      "attribute": "strength"
+    },
+    {
+      "id": "demolicoes",
+      "name": "Demolições",
+      "attribute": "logic"
+    },
+    {
+      "id": "descompilar",
+      "name": "Descompilar",
+      "attribute": "resonance",
+      "restricted": "resonance"
+    },
+    {
+      "id": "desencantar",
+      "name": "Desencantar",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "disfarce",
+      "name": "Disfarce",
+      "attribute": "intuition"
+    },
+    {
+      "id": "esgueirar",
+      "name": "Esgueirar",
+      "attribute": "agility"
+    },
+    {
+      "id": "etiqueta",
+      "name": "Etiqueta",
+      "attribute": "charisma"
+    },
+    {
+      "id": "falsificacao",
+      "name": "Falsificação",
+      "attribute": "logic"
+    },
+    {
+      "id": "ginastica",
+      "name": "Ginástica",
+      "attribute": "agility"
+    },
+    {
+      "id": "guerra-eletronica",
+      "name": "Guerra Eletrônica",
+      "attribute": "logic"
+    },
+    {
+      "id": "hackear",
+      "name": "Hackear",
+      "attribute": "logic"
+    },
+    {
+      "id": "hardware",
+      "name": "Hardware",
+      "attribute": "logic"
+    },
+    {
+      "id": "instrucao",
+      "name": "Instrução",
+      "attribute": "charisma"
+    },
+    {
+      "id": "intimidacao",
+      "name": "Intimidação",
+      "attribute": "charisma"
+    },
+    {
+      "id": "invocacao",
+      "name": "Invocação",
+      "attribute": "magic",
+      "restricted": "magic"
+    },
+    {
+      "id": "laminas",
+      "name": "Lâminas",
+      "attribute": "agility"
+    },
+    {
+      "id": "lideranca",
+      "name": "Liderança",
+      "attribute": "charisma"
+    },
+    {
+      "id": "mecanica-aeronautica",
+      "name": "Mecânica Aeronáutica",
+      "attribute": "logic"
+    },
+    {
+      "id": "mecanica-automobilistica",
+      "name": "Mecânica Automobilística",
+      "attribute": "logic"
+    },
+    {
+      "id": "mecanica-industrial",
+      "name": "Mecânica Industrial",
+      "attribute": "logic"
+    },
+    {
+      "id": "mecanica-nautica",
+      "name": "Mecânica Náutica",
+      "attribute": "logic"
+    },
+    {
+      "id": "medicina",
+      "name": "Medicina",
+      "attribute": "logic"
+    },
+    {
+      "id": "mergulho",
+      "name": "Mergulho",
+      "attribute": "body"
+    },
+    {
+      "id": "natacao",
+      "name": "Natação",
+      "attribute": "strength"
+    },
+    {
+      "id": "navegacao",
+      "name": "Navegação",
+      "attribute": "intuition"
+    },
+    {
+      "id": "negociacao",
+      "name": "Negociação",
+      "attribute": "charisma"
+    },
+    {
+      "id": "percepcao",
+      "name": "Percepção",
+      "attribute": "intuition"
+    },
+    {
+      "id": "performance",
+      "name": "Performance",
+      "attribute": "charisma"
+    },
+    {
+      "id": "personificacao",
+      "name": "Personificação",
+      "attribute": "charisma"
+    },
+    {
+      "id": "pilotar-aeronaves",
+      "name": "Pilotar Aeronaves",
+      "attribute": "reaction"
+    },
+    {
+      "id": "pilotar-andarilhos",
+      "name": "Pilotar Andarilhos",
+      "attribute": "reaction"
+    },
+    {
+      "id": "pilotar-barcos",
+      "name": "Pilotar Barcos",
+      "attribute": "reaction"
+    },
+    {
+      "id": "pilotar-espaconaves",
+      "name": "Pilotar Espaçonaves",
+      "attribute": "reaction"
+    },
+    {
+      "id": "pilotar-veiculos-exoticos",
+      "name": "Pilotar Veículos Exóticos",
+      "attribute": "reaction"
+    },
+    {
+      "id": "pilotar-veiculos-terrestres",
+      "name": "Pilotar Veículos Terrestres",
+      "attribute": "reaction"
+    },
+    {
+      "id": "pistolas",
+      "name": "Pistolas",
+      "attribute": "agility"
+    },
+    {
+      "id": "presdigitacao",
+      "name": "Presdigitação",
+      "attribute": "agility"
+    },
+    {
+      "id": "primeiros-socorros",
+      "name": "Primeiros Socorros",
+      "attribute": "logic"
+    },
+    {
+      "id": "queda-livre",
+      "name": "Queda Livre",
+      "attribute": "body"
+    },
+    {
+      "id": "quimica",
+      "name": "Química",
+      "attribute": "logic"
+    },
+    {
+      "id": "rastrear",
+      "name": "Rastrear",
+      "attribute": "intuition"
+    },
+    {
+      "id": "registrar",
+      "name": "Registrar",
+      "attribute": "resonance",
+      "restricted": "resonance"
+    },
+    {
+      "id": "sentido-astral",
+      "name": "Sentido Astral",
+      "attribute": "intuition",
+      "restricted": "astral"
+    },
+    {
+      "id": "sobrevivencia",
+      "name": "Sobrevivência",
+      "attribute": "willpower"
+    },
+    {
+      "id": "software",
+      "name": "Software",
+      "attribute": "logic"
+    },
+    {
+      "id": "trapaca",
+      "name": "Trapaça",
+      "attribute": "charisma"
+    },
+    {
+      "id": "vincular",
+      "name": "Vincular",
+      "attribute": "magic",
+      "restricted": "magic"
+    }
+  ],
+  "groups": [
+    {
+      "id": "ar-livre",
+      "name": "Ar Livre",
+      "skills": [
+        "navegacao",
+        "rastrear",
+        "sobrevivencia"
+      ]
+    },
+    {
+      "id": "armas-de-fogo",
+      "name": "Armas de Fogo",
+      "skills": [
+        "armas-de-cano-longo",
+        "automaticas",
+        "pistolas"
+      ]
+    },
+    {
+      "id": "atletismo",
+      "name": "Atletismo",
+      "skills": [
+        "corrida",
+        "ginastica",
+        "natacao"
+      ]
+    },
+    {
+      "id": "atuacao",
+      "name": "Atuação",
+      "skills": [
+        "performance",
+        "personificacao",
+        "trapaca"
+      ]
+    },
+    {
+      "id": "biotecnologia",
+      "name": "Biotecnologia",
+      "skills": [
+        "cibertecnologia",
+        "medicina",
+        "primeiros-socorros"
+      ]
+    },
+    {
+      "id": "combate-corpo-a-corpo",
+      "name": "Combate Corpo a Corpo",
+      "skills": [
+        "bastoes",
+        "combate-desarmado",
+        "laminas"
+      ]
+    },
+    {
+      "id": "convocacao",
+      "name": "Convocação",
+      "skills": [
+        "banimento",
+        "invocacao",
+        "vincular"
+      ],
+      "restricted": "magic"
+    },
+    {
+      "id": "eletronica",
+      "name": "Eletrônica",
+      "skills": [
+        "computador",
+        "hardware",
+        "software"
+      ]
+    },
+    {
+      "id": "encantar",
+      "name": "Encantar",
+      "skills": [
+        "alquimia",
+        "artifice",
+        "desencantar"
+      ],
+      "restricted": "magic"
+    },
+    {
+      "id": "engenharia",
+      "name": "Engenharia",
+      "skills": [
+        "mecanica-aeronautica",
+        "mecanica-automobilistica",
+        "mecanica-industrial",
+        "mecanica-nautica"
+      ]
+    },
+    {
+      "id": "feiticaria",
+      "name": "Feitiçaria",
+      "skills": [
+        "conjuracao",
+        "conjuracao-ritual",
+        "contramagica"
+      ],
+      "restricted": "magic"
+    },
+    {
+      "id": "furtividade",
+      "name": "Furtividade",
+      "skills": [
+        "disfarce",
+        "esgueirar",
+        "presdigitacao"
+      ]
+    },
+    {
+      "id": "influencia",
+      "name": "Influência",
+      "skills": [
+        "etiqueta",
+        "lideranca",
+        "negociacao"
+      ]
+    },
+    {
+      "id": "quebra-de-dados",
+      "name": "Quebra de Dados",
+      "skills": [
+        "cibercombate",
+        "guerra-eletronica",
+        "hackear"
+      ]
+    },
+    {
+      "id": "tarefa",
+      "name": "Tarefa",
+      "skills": [
+        "compilar",
+        "descompilar",
+        "registrar"
+      ],
+      "restricted": "resonance"
+    }
+  ],
+  "knowledgeCategories": [
+    {
+      "id": "academic",
+      "name": "Acadêmica",
+      "attribute": "logic"
+    },
+    {
+      "id": "interests",
+      "name": "Interesses",
+      "attribute": "intuition"
+    },
+    {
+      "id": "professional",
+      "name": "Profissional",
+      "attribute": "logic"
+    },
+    {
+      "id": "street",
+      "name": "Rua",
+      "attribute": "intuition"
+    }
+  ]
+}

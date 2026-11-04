@@ -1,0 +1,667 @@
+[
+  {
+    "id": "afinidade-espiritual",
+    "name": "Afinidade Espiritual",
+    "kind": "positive",
+    "cost": 7,
+    "requires": {
+      "awakened": true
+    },
+    "summary": "+1 serviço de espírito de um tipo e +1 dado em Vincular.",
+    "needsNote": "Tipo de espírito"
+  },
+  {
+    "id": "alto-limiar-de-dor",
+    "name": "Alto Limiar de Dor",
+    "kind": "positive",
+    "cost": 7,
+    "maxRating": 3,
+    "summary": "Ignora 1 caixa de dano por nível nos modificadores de ferimento."
+  },
+  {
+    "id": "ambidestria",
+    "name": "Ambidestria",
+    "kind": "positive",
+    "cost": 4,
+    "summary": "Sem penalidade na mão inábil."
+  },
+  {
+    "id": "aparencia-humana",
+    "name": "Aparência Humana",
+    "kind": "positive",
+    "cost": 6,
+    "requires": {
+      "metatypes": [
+        "elf",
+        "dwarf",
+        "ork"
+      ]
+    },
+    "summary": "Passa por humano na maioria das situações."
+  },
+  {
+    "id": "aptidao",
+    "name": "Aptidão",
+    "kind": "positive",
+    "cost": 14,
+    "summary": "Uma perícia pode chegar a 7 na criação e a 13 depois.",
+    "needsNote": "Perícia"
+  },
+  {
+    "id": "atleta-natural",
+    "name": "Atleta Natural",
+    "kind": "positive",
+    "cost": 7,
+    "summary": "+2 dados em Corrida e Ginástica."
+  },
+  {
+    "id": "atributo-excepcional",
+    "name": "Atributo Excepcional",
+    "kind": "positive",
+    "cost": 14,
+    "gmApproval": true,
+    "incompatible": [
+      "sortudo"
+    ],
+    "summary": "Eleva em 1 o limite máximo de um atributo (exceto Trunfo).",
+    "choice": "attribute"
+  },
+  {
+    "id": "bilingue",
+    "name": "Bilíngue",
+    "kind": "positive",
+    "cost": 5,
+    "summary": "Um segundo idioma nativo gratuito. Só na criação."
+  },
+  {
+    "id": "brandura",
+    "name": "Brandura",
+    "kind": "positive",
+    "cost": 8,
+    "incompatible": [
+      "estilo-distinto"
+    ],
+    "summary": "+1 no limiar para lembrar da personagem; –2 para segui-la em multidões."
+  },
+  {
+    "id": "camaleao-astral",
+    "name": "Camaleão Astral",
+    "kind": "positive",
+    "cost": 10,
+    "requires": {
+      "magic": true
+    },
+    "summary": "Assinaturas duram metade do tempo; –2 dados para detectá-las."
+  },
+  {
+    "id": "concentracao-focada",
+    "name": "Concentração Focada",
+    "kind": "positive",
+    "cost": 4,
+    "maxRating": 6,
+    "requires": {
+      "casterOrTechnomancer": true
+    },
+    "summary": "Sustenta um feitiço/forma de Poder/Nível até o nível da qualidade sem penalidade."
+  },
+  {
+    "id": "coragem",
+    "name": "Coragem",
+    "kind": "positive",
+    "cost": 10,
+    "summary": "+2 dados para resistir a medo e intimidação."
+  },
+  {
+    "id": "curandeiro-rapido",
+    "name": "Curandeiro Rápido",
+    "kind": "positive",
+    "cost": 3,
+    "summary": "+2 dados em todos os Testes de Cura."
+  },
+  {
+    "id": "desejo-de-viver",
+    "name": "Desejo de Viver",
+    "kind": "positive",
+    "cost": 3,
+    "maxRating": 3,
+    "summary": "+1 Caixa de Dano em Excesso por nível."
+  },
+  {
+    "id": "endurecimento-natural",
+    "name": "Endurecimento Natural",
+    "kind": "positive",
+    "cost": 10,
+    "summary": "1 ponto de filtro de bioretroalimentação natural."
+  },
+  {
+    "id": "engenhoqueiro",
+    "name": "Engenhoqueiro",
+    "kind": "positive",
+    "cost": 11,
+    "summary": "+20% de Velocidade ou +1 de Manejo por 1D6 minutos; +2 dados em manobras."
+  },
+  {
+    "id": "espirito-mentor",
+    "name": "Espírito Mentor",
+    "kind": "positive",
+    "cost": 5,
+    "requires": {
+      "magic": true
+    },
+    "summary": "Segue um espírito patrono.",
+    "choice": "mentor"
+  },
+  {
+    "id": "felino",
+    "name": "Felino",
+    "kind": "positive",
+    "cost": 7,
+    "summary": "+2 dados em Esgueirar."
+  },
+  {
+    "id": "gambiarra",
+    "name": "Gambiarra",
+    "kind": "positive",
+    "cost": 10,
+    "summary": "+2 dados em Mecânica ao improvisar; limiar –1."
+  },
+  {
+    "id": "imunidade-natural",
+    "name": "Imunidade Natural",
+    "kind": "positive",
+    "cost": 0,
+    "options": [
+      {
+        "label": "Doença/toxina natural",
+        "cost": 4
+      },
+      {
+        "label": "Doença/toxina sintética",
+        "cost": 10
+      }
+    ],
+    "summary": "Imune a uma doença ou toxina.",
+    "needsNote": "Doença ou toxina"
+  },
+  {
+    "id": "indomavel",
+    "name": "Indomável",
+    "kind": "positive",
+    "cost": 8,
+    "maxRating": 3,
+    "summary": "+1 em um Limite Inerente por nível.",
+    "choice": "limits"
+  },
+  {
+    "id": "memoria-fotografica",
+    "name": "Memória Fotográfica",
+    "kind": "positive",
+    "cost": 6,
+    "summary": "+2 dados em Testes de Memória."
+  },
+  {
+    "id": "mente-analitica",
+    "name": "Mente Analítica",
+    "kind": "positive",
+    "cost": 5,
+    "summary": "+2 dados em Lógica para padrões e pistas; metade do tempo."
+  },
+  {
+    "id": "primeira-impressao",
+    "name": "Primeira Impressão",
+    "kind": "positive",
+    "cost": 11,
+    "summary": "+2 dados em Testes Sociais no primeiro encontro."
+  },
+  {
+    "id": "programador-rapido",
+    "name": "Programador Rápido",
+    "kind": "positive",
+    "cost": 10,
+    "summary": "+2 dados em uma ação da Matriz com teste.",
+    "needsNote": "Ação da Matriz"
+  },
+  {
+    "id": "resistencia-a-patogenos-toxinas",
+    "name": "Resistência a Patógenos/Toxinas",
+    "kind": "positive",
+    "cost": 0,
+    "options": [
+      {
+        "label": "Patógenos ou toxinas",
+        "cost": 4
+      },
+      {
+        "label": "Patógenos e toxinas",
+        "cost": 8
+      }
+    ],
+    "incompatible": [
+      "sistema-imunologico-fraco"
+    ],
+    "summary": "+1 dado nos Testes de Resistência."
+  },
+  {
+    "id": "resistencia-magica",
+    "name": "Resistência Mágica",
+    "kind": "positive",
+    "cost": 6,
+    "maxRating": 4,
+    "summary": "+1 dado por nível contra feitiços; sempre ativa."
+  },
+  {
+    "id": "sortudo",
+    "name": "Sortudo",
+    "kind": "positive",
+    "cost": 12,
+    "gmApproval": true,
+    "incompatible": [
+      "atributo-excepcional"
+    ],
+    "summary": "Trunfo pode superar em 1 o máximo do meta-tipo."
+  },
+  {
+    "id": "terreno-familiar",
+    "name": "Terreno Familiar",
+    "kind": "positive",
+    "cost": 10,
+    "repeatable": true,
+    "summary": "Bônus em um território que a personagem conhece.",
+    "options": [
+      {
+        "label": "Aclimatação Astral",
+        "cost": 10
+      },
+      {
+        "label": "Conheço um Cara",
+        "cost": 10
+      },
+      {
+        "label": "Território Digital",
+        "cost": 10
+      },
+      {
+        "label": "Transportador",
+        "cost": 10
+      },
+      {
+        "label": "Em Fuga",
+        "cost": 10
+      },
+      {
+        "label": "Outro bônus do livro",
+        "cost": 10
+      }
+    ],
+    "needsNote": "Território"
+  },
+  {
+    "id": "ultraflexibilidade",
+    "name": "Ultraflexibilidade",
+    "kind": "positive",
+    "cost": 6,
+    "summary": "+2 dados em Arte da Fuga."
+  },
+  {
+    "id": "vitalidade",
+    "name": "Vitalidade",
+    "kind": "positive",
+    "cost": 9,
+    "summary": "Veja a descrição da qualidade no livro."
+  },
+  {
+    "id": "alergia",
+    "name": "Alergia",
+    "kind": "negative",
+    "cost": 0,
+    "options": [
+      {
+        "label": "Incomum, Leve",
+        "cost": 5
+      },
+      {
+        "label": "Incomum, Moderada",
+        "cost": 10
+      },
+      {
+        "label": "Incomum, Grave",
+        "cost": 15
+      },
+      {
+        "label": "Incomum, Extrema",
+        "cost": 20
+      },
+      {
+        "label": "Comum, Leve",
+        "cost": 10
+      },
+      {
+        "label": "Comum, Moderada",
+        "cost": 15
+      },
+      {
+        "label": "Comum, Grave",
+        "cost": 20
+      },
+      {
+        "label": "Comum, Extrema",
+        "cost": 25
+      }
+    ],
+    "summary": "Penalidades em contato com um alergênico.",
+    "needsNote": "Alergênico"
+  },
+  {
+    "id": "arrasado",
+    "name": "Arrasado",
+    "kind": "negative",
+    "cost": 10,
+    "summary": "Veja a descrição da qualidade no livro."
+  },
+  {
+    "id": "azar",
+    "name": "Azar",
+    "kind": "negative",
+    "cost": 10,
+    "summary": "Ao usar Trunfo, lança 1D6: no 1, o efeito sai ao contrário."
+  },
+  {
+    "id": "baixo-limiar-de-dor",
+    "name": "Baixo Limiar de Dor",
+    "kind": "negative",
+    "cost": 9,
+    "incompatible": [
+      "alto-limiar-de-dor"
+    ],
+    "summary": "–1 de ferimento a cada 2 caixas de dano, em vez de 3."
+  },
+  {
+    "id": "bloqueio-de-codigo",
+    "name": "Bloqueio de Código",
+    "kind": "negative",
+    "cost": 10,
+    "summary": "–2 dados em uma ação específica da Matriz.",
+    "needsNote": "Ação da Matriz"
+  },
+  {
+    "id": "codigo-de-honra",
+    "name": "Código de Honra",
+    "kind": "negative",
+    "cost": 15,
+    "summary": "Respeita um código ligado a um grupo protegido.",
+    "needsNote": "Grupo protegido"
+  },
+  {
+    "id": "dependentes",
+    "name": "Dependentes",
+    "kind": "negative",
+    "cost": 0,
+    "options": [
+      {
+        "label": "Nível 3",
+        "cost": 3
+      },
+      {
+        "label": "Nível 6",
+        "cost": 6
+      },
+      {
+        "label": "Nível 9 (mora com a personagem)",
+        "cost": 9
+      }
+    ],
+    "summary": "Alguém consome tempo e recursos; treinos levam 50% mais.",
+    "needsNote": "Dependente"
+  },
+  {
+    "id": "elfo-poser",
+    "name": "Elfo Poser",
+    "kind": "negative",
+    "cost": 6,
+    "requires": {
+      "metatypes": [
+        "human"
+      ]
+    },
+    "summary": "Humano que se faz passar por elfo."
+  },
+  {
+    "id": "estilo-distinto",
+    "name": "Estilo Distinto",
+    "kind": "negative",
+    "cost": 5,
+    "incompatible": [
+      "brandura"
+    ],
+    "summary": "Fácil de lembrar e identificar.",
+    "needsNote": "Traço marcante"
+  },
+  {
+    "id": "farol-astral",
+    "name": "Farol Astral",
+    "kind": "negative",
+    "cost": 10,
+    "requires": {
+      "magic": true
+    },
+    "summary": "Assinatura astral muito visível, dura o dobro."
+  },
+  {
+    "id": "gremlins",
+    "name": "Gremlins",
+    "kind": "negative",
+    "cost": 4,
+    "maxRating": 4,
+    "summary": "Aparelhos falham perto da personagem."
+  },
+  {
+    "id": "incompetente",
+    "name": "Incompetente",
+    "kind": "negative",
+    "cost": 5,
+    "summary": "Trata um grupo de perícias Ativas como “alheio”.",
+    "needsNote": "Grupo de perícias"
+  },
+  {
+    "id": "inculto",
+    "name": "Inculto",
+    "kind": "negative",
+    "cost": 8,
+    "summary": "“Alheia” em perícias Técnicas e de Conhecimento Acadêmico e Profissional que não possui."
+  },
+  {
+    "id": "insonia",
+    "name": "Insônia",
+    "kind": "negative",
+    "cost": 0,
+    "options": [
+      {
+        "label": "Nível 10",
+        "cost": 10
+      },
+      {
+        "label": "Nível 15",
+        "cost": 15
+      }
+    ],
+    "summary": "Falha em Intuição + Vontade (4) prejudica a recuperação de Atordoamento."
+  },
+  {
+    "id": "ma-reputacao",
+    "name": "Má Reputação",
+    "kind": "negative",
+    "cost": 7,
+    "summary": "Mancha duradoura na reputação; recompra exige resolver a origem."
+  },
+  {
+    "id": "maos-instaveis",
+    "name": "Mãos Instáveis",
+    "kind": "negative",
+    "cost": 7,
+    "summary": "–2 dados em testes baseados em Agilidade durante os sintomas."
+  },
+  {
+    "id": "ork-poser",
+    "name": "Ork Poser",
+    "kind": "negative",
+    "cost": 6,
+    "requires": {
+      "metatypes": [
+        "human",
+        "elf"
+      ]
+    },
+    "summary": "Humano ou elfo que se faz passar por ork."
+  },
+  {
+    "id": "paralisia-de-combate",
+    "name": "Paralisia de Combate",
+    "kind": "negative",
+    "cost": 12,
+    "summary": "Divide o Valor de Iniciativa no primeiro teste do combate."
+  },
+  {
+    "id": "perda-de-confianca",
+    "name": "Perda de Confiança",
+    "kind": "negative",
+    "cost": 10,
+    "summary": "Perdeu a confiança em uma perícia.",
+    "needsNote": "Perícia"
+  },
+  {
+    "id": "preconceituoso",
+    "name": "Preconceituoso",
+    "kind": "negative",
+    "cost": 0,
+    "options": [
+      {
+        "label": "Grupo comum, Inclinado",
+        "cost": 5
+      },
+      {
+        "label": "Grupo comum, Aberto",
+        "cost": 7
+      },
+      {
+        "label": "Grupo comum, Radical",
+        "cost": 10
+      },
+      {
+        "label": "Grupo específico, Inclinado",
+        "cost": 3
+      },
+      {
+        "label": "Grupo específico, Aberto",
+        "cost": 5
+      },
+      {
+        "label": "Grupo específico, Radical",
+        "cost": 8
+      }
+    ],
+    "summary": "Hostil a um grupo específico.",
+    "needsNote": "Grupo"
+  },
+  {
+    "id": "rude",
+    "name": "Rude",
+    "kind": "negative",
+    "cost": 14,
+    "summary": "Dificuldade de interagir; age por impulso."
+  },
+  {
+    "id": "ruina-espiritual",
+    "name": "Ruína Espiritual",
+    "kind": "negative",
+    "cost": 7,
+    "requires": {
+      "awakened": true
+    },
+    "summary": "Um tipo de espírito se incomoda com a personagem.",
+    "needsNote": "Tipo de espírito"
+  },
+  {
+    "id": "sinado",
+    "name": "SINado",
+    "kind": "negative",
+    "cost": 0,
+    "options": [
+      {
+        "label": "SIN Nacional",
+        "cost": 5
+      },
+      {
+        "label": "SIN Criminoso",
+        "cost": 10
+      },
+      {
+        "label": "SIN Corporativo Limitado",
+        "cost": 15
+      },
+      {
+        "label": "SIN Corporativo Nato",
+        "cost": 25
+      }
+    ],
+    "summary": "Possui um SIN legal."
+  },
+  {
+    "id": "sistema-imunologico-fraco",
+    "name": "Sistema Imunológico Fraco",
+    "kind": "negative",
+    "cost": 10,
+    "incompatible": [
+      "imunidade-natural",
+      "resistencia-a-patogenos-toxinas"
+    ],
+    "summary": "+2 no Poder de doenças contra a personagem."
+  },
+  {
+    "id": "sistema-sensivel",
+    "name": "Sistema Sensível",
+    "kind": "negative",
+    "cost": 12,
+    "summary": "Dobra a perda de Essência de ciber-itens; rejeita biônicos."
+  },
+  {
+    "id": "tensao-social",
+    "name": "Tensão Social",
+    "kind": "negative",
+    "cost": 8,
+    "summary": "Emoções atrapalham interações diante de um gatilho.",
+    "needsNote": "Causa e gatilho"
+  },
+  {
+    "id": "vertigem-de-sensorama",
+    "name": "Vertigem de Sensorama",
+    "kind": "negative",
+    "cost": 5,
+    "summary": "Desorientação em RA, RV e sensorama."
+  },
+  {
+    "id": "vicio",
+    "name": "Vício",
+    "kind": "negative",
+    "cost": 0,
+    "options": [
+      {
+        "label": "Menor",
+        "cost": 4
+      },
+      {
+        "label": "Moderado",
+        "cost": 9
+      },
+      {
+        "label": "Grave",
+        "cost": 20
+      },
+      {
+        "label": "Completo",
+        "cost": 25
+      }
+    ],
+    "summary": "Dependência física ou psicológica.",
+    "needsNote": "Substância ou hábito"
+  }
+]

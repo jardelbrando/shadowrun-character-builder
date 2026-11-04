@@ -1,0 +1,170 @@
+[
+  {
+    "id": "caixa-de-ferramentas",
+    "name": "Caixa de Ferramentas",
+    "kind": "common",
+    "availability": null,
+    "cost": 80
+  },
+  {
+    "id": "codificacao",
+    "name": "Codificação",
+    "kind": "common",
+    "availability": null,
+    "cost": 80
+  },
+  {
+    "id": "configurador",
+    "name": "Configurador",
+    "kind": "common",
+    "availability": null,
+    "cost": 80
+  },
+  {
+    "id": "depuracao-de-sinal",
+    "name": "Depuração de Sinal",
+    "kind": "common",
+    "availability": null,
+    "cost": 80
+  },
+  {
+    "id": "edicao",
+    "name": "Edição",
+    "kind": "common",
+    "availability": null,
+    "cost": 80
+  },
+  {
+    "id": "maquina-virtual",
+    "name": "Máquina Virtual",
+    "kind": "common",
+    "availability": null,
+    "cost": 80
+  },
+  {
+    "id": "navegador",
+    "name": "Navegador",
+    "kind": "common",
+    "availability": null,
+    "cost": 80
+  },
+  {
+    "id": "armadura",
+    "name": "Armadura",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "assaltante",
+    "name": "Assaltante",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "bioretroalimentacao",
+    "name": "Bioretroalimentação",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "blecaute",
+    "name": "Blecaute",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "capa",
+    "name": "Capa",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "casulo",
+    "name": "Casulo",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "confinar",
+    "name": "Confinar",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "decodificacao",
+    "name": "Decodificação",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "desativar",
+    "name": "Desativar",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "dividir",
+    "name": "Dividir",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "esgueirar",
+    "name": "Esgueirar",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "explorar",
+    "name": "Explorar",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "furtividade",
+    "name": "Furtividade",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "guardar",
+    "name": "Guardar",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "martelo",
+    "name": "Martelo",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "monitor-de-bebe",
+    "name": "Monitor de Bebê",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  },
+  {
+    "id": "rastrear",
+    "name": "Rastrear",
+    "kind": "hacking",
+    "availability": "4R",
+    "cost": 250
+  }
+]

@@ -1,0 +1,153 @@
+{
+  "traditions": [
+    {
+      "id": "hermetic",
+      "name": "Hermética",
+      "drain": [
+        "logic",
+        "willpower"
+      ],
+      "spirits": {
+        "combate": "Fogo",
+        "deteccao": "Ar",
+        "saude": "Homem",
+        "ilusao": "Água",
+        "manipulacao": "Terra"
+      }
+    },
+    {
+      "id": "shamanic",
+      "name": "Xamânica",
+      "drain": [
+        "charisma",
+        "willpower"
+      ],
+      "spirits": {
+        "combate": "Feras",
+        "deteccao": "Água",
+        "saude": "Terra",
+        "ilusao": "Ar",
+        "manipulacao": "Homem"
+      }
+    }
+  ],
+  "mentorSpirits": [
+    {
+      "id": "aguia",
+      "name": "Águia"
+    },
+    {
+      "id": "cao",
+      "name": "Cão"
+    },
+    {
+      "id": "corvo",
+      "name": "Corvo"
+    },
+    {
+      "id": "gato",
+      "name": "Gato"
+    },
+    {
+      "id": "guerreiro-sabio",
+      "name": "Guerreiro Sábio"
+    },
+    {
+      "id": "lobo",
+      "name": "Lobo"
+    },
+    {
+      "id": "mar",
+      "name": "Mar"
+    },
+    {
+      "id": "matador-de-dragoes",
+      "name": "Matador de Dragões"
+    },
+    {
+      "id": "montanha",
+      "name": "Montanha"
+    },
+    {
+      "id": "portador-da-chama",
+      "name": "Portador da Chama"
+    },
+    {
+      "id": "rato",
+      "name": "Rato"
+    },
+    {
+      "id": "sedutor",
+      "name": "Sedutor"
+    },
+    {
+      "id": "serpente",
+      "name": "Serpente"
+    },
+    {
+      "id": "tubarao",
+      "name": "Tubarão"
+    },
+    {
+      "id": "urso",
+      "name": "Urso"
+    }
+  ],
+  "spiritTypes": [
+    "Água",
+    "Ar",
+    "Feras",
+    "Fogo",
+    "Homem",
+    "Terra"
+  ],
+  "spriteTypes": [
+    "Dados",
+    "Defeito",
+    "Invasor",
+    "Máquina",
+    "Mensageiro"
+  ],
+  "focusTypes": [
+    {
+      "id": "weapon",
+      "name": "Foco de Arma",
+      "bondMultiplier": 3
+    },
+    {
+      "id": "enchanting",
+      "name": "Foco de Encantar",
+      "bondMultiplier": 3
+    },
+    {
+      "id": "spirit",
+      "name": "Foco de Espírito",
+      "bondMultiplier": 2
+    },
+    {
+      "id": "spell",
+      "name": "Foco de Feitiço",
+      "bondMultiplier": 2
+    },
+    {
+      "id": "power",
+      "name": "Foco de Poder",
+      "bondMultiplier": 6
+    },
+    {
+      "id": "qi",
+      "name": "Foco de Qi",
+      "bondMultiplier": 2
+    },
+    {
+      "id": "metamagic",
+      "name": "Foco Metamágico",
+      "bondMultiplier": 3
+    }
+  ],
+  "aspectedGroups": [
+    "feiticaria",
+    "convocacao",
+    "encantar"
+  ]
+}

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "ampliar-atributo",
+    "name": "Ampliar Atributo",
+    "cost": 0.25,
+    "perRating": true
+  },
+  {
+    "id": "aparar-projetil",
+    "name": "Aparar Projétil",
+    "cost": 0.25,
+    "perRating": true
+  },
+  {
+    "id": "armadura-mistica",
+    "name": "Armadura Mística",
+    "cost": 0.5,
+    "perRating": true
+  },
+  {
+    "id": "atributo-fisico-melhorado",
+    "name": "Atributo Físico Melhorado",
+    "cost": 1,
+    "perRating": true,
+    "choice": "physicalAttribute"
+  },
+  {
+    "id": "cinesica",
+    "name": "Cinésica",
+    "cost": 0.25,
+    "perRating": true
+  },
+  {
+    "id": "controle-vocal",
+    "name": "Controle Vocal",
+    "cost": 0.5,
+    "perRating": true
+  },
+  {
+    "id": "corpo-leve",
+    "name": "Corpo Leve",
+    "cost": 0.25,
+    "perRating": true
+  },
+  {
+    "id": "correr-na-parede",
+    "name": "Correr na Parede",
+    "cost": 0.5
+  },
+  {
+    "id": "cura-rapida",
+    "name": "Cura Rápida",
+    "cost": 0.5,
+    "perRating": true
+  },
+  {
+    "id": "golpe-critico",
+    "name": "Golpe Crítico",
+    "cost": 0.5,
+    "choice": "skill"
+  },
+  {
+    "id": "habilidade-melhorada",
+    "name": "Habilidade Melhorada",
+    "cost": 0.5,
+    "perRating": true,
+    "choice": "skill"
+  },
+  {
+    "id": "imunidade-natural",
+    "name": "Imunidade Natural",
+    "cost": 0.25,
+    "perRating": true
+  },
+  {
+    "id": "maos-letais",
+    "name": "Mãos Letais",
+    "cost": 0.5
+  },
+  {
+    "id": "passos-sem-pegadas",
+    "name": "Passos sem Pegadas",
+    "cost": 1
+  },
+  {
+    "id": "percepcao-ampliada",
+    "name": "Percepção Ampliada",
+    "cost": 0.5,
+    "perRating": true
+  },
+  {
+    "id": "percepcao-astral",
+    "name": "Percepção Astral",
+    "cost": 1
+  },
+  {
+    "id": "potencial-melhorado",
+    "name": "Potencial Melhorado",
+    "cost": 0.5,
+    "perRating": true,
+    "choice": "limit"
+  },
+  {
+    "id": "precisao-ampliada",
+    "name": "Precisão Ampliada",
+    "cost": 0.25,
+    "choice": "skill"
+  },
+  {
+    "id": "pulso-de-adrenalina",
+    "name": "Pulso de Adrenalina",
+    "cost": 0.25,
+    "perRating": true
+  },
+  {
+    "id": "reflexos-melhorados",
+    "name": "Reflexos Melhorados",
+    "cost": 0,
+    "costByRating": [
+      1.5,
+      2.5,
+      3.5
+    ],
+    "maxRating": 3
+  },
+  {
+    "id": "resistencia-a-dor",
+    "name": "Resistência à Dor",
+    "cost": 0.5,
+    "perRating": true
+  },
+  {
+    "id": "resistencia-a-feiticos",
+    "name": "Resistência a Feitiços",
+    "cost": 0.5,
+    "perRating": true
+  },
+  {
+    "id": "sentido-de-combate",
+    "name": "Sentido de Combate",
+    "cost": 0.5,
+    "perRating": true
+  },
+  {
+    "id": "sentido-de-perigo",
+    "name": "Sentido de Perigo",
+    "cost": 0.25,
+    "perRating": true
+  },
+  {
+    "id": "sentido-melhorado",
+    "name": "Sentido Melhorado",
+    "cost": 0.25,
+    "repeatable": true
+  }
+]

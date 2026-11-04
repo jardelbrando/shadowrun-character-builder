@@ -1,0 +1,1143 @@
+[
+  {
+    "id": "estilhacar",
+    "name": "Estilhaçar",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 6"
+  },
+  {
+    "id": "raio-de-forca",
+    "name": "Raio de Força",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 3"
+  },
+  {
+    "id": "esfera-de-forca",
+    "name": "Esfera de Força",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P"
+  },
+  {
+    "id": "jato-de-acido",
+    "name": "Jato de Ácido",
+    "category": "combate",
+    "tags": [
+      "indireto",
+      "elemental"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 3"
+  },
+  {
+    "id": "onda-toxica",
+    "name": "Onda Tóxica",
+    "category": "combate",
+    "tags": [
+      "indireto",
+      "elemental"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 1"
+  },
+  {
+    "id": "lanca-chamas",
+    "name": "Lança-chamas",
+    "category": "combate",
+    "tags": [
+      "indireto",
+      "elemental"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 3"
+  },
+  {
+    "id": "bola-de-fogo",
+    "name": "Bola de Fogo",
+    "category": "combate",
+    "tags": [
+      "indireto",
+      "elemental"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 1"
+  },
+  {
+    "id": "nocaute",
+    "name": "Nocaute",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 6"
+  },
+  {
+    "id": "raio-de-atordoamento",
+    "name": "Raio de Atordoamento",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 3"
+  },
+  {
+    "id": "esfera-de-atordoamento",
+    "name": "Esfera de Atordoamento",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P"
+  },
+  {
+    "id": "relampago",
+    "name": "Relâmpago",
+    "category": "combate",
+    "tags": [
+      "indireto",
+      "elemental"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 3"
+  },
+  {
+    "id": "esfera-de-relampago",
+    "name": "Esfera de Relâmpago",
+    "category": "combate",
+    "tags": [
+      "indireto",
+      "elemental"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 1"
+  },
+  {
+    "id": "soco",
+    "name": "Soco",
+    "category": "combate",
+    "tags": [
+      "indireto"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 6"
+  },
+  {
+    "id": "pancada",
+    "name": "Pancada",
+    "category": "combate",
+    "tags": [
+      "indireto"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 3"
+  },
+  {
+    "id": "explosao",
+    "name": "Explosão",
+    "category": "combate",
+    "tags": [
+      "indireto"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P"
+  },
+  {
+    "id": "toque-da-morte",
+    "name": "Toque da Morte",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 6"
+  },
+  {
+    "id": "raio-de-mana",
+    "name": "Raio de Mana",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P – 3"
+  },
+  {
+    "id": "bola-de-mana",
+    "name": "Bola de Mana",
+    "category": "combate",
+    "tags": [
+      "direto"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": "F",
+    "duration": "I",
+    "drain": "P"
+  },
+  {
+    "id": "analisar-dispositivo",
+    "name": "Analisar Dispositivo",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "direcional"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "analisar-magia",
+    "name": "Analisar Magia",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "direcional"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "analisar-verdade",
+    "name": "Analisar Verdade",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "direcional"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "clariaudiencia",
+    "name": "Clariaudiência",
+    "category": "deteccao",
+    "tags": [
+      "passivo",
+      "direcional"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "clarividencia",
+    "name": "Clarividência",
+    "category": "deteccao",
+    "tags": [
+      "passivo",
+      "direcional"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "detectar-forma-de-vida",
+    "name": "Detectar [Forma de Vida]",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "detectar-forma-de-vida-prolongado",
+    "name": "Detectar [Forma de Vida], Prolongado",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área estendida"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "detectar-objeto",
+    "name": "Detectar [Objeto]",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "detectar-individuo",
+    "name": "Detectar Indivíduo",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "detectar-inimigos",
+    "name": "Detectar Inimigos",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "detectar-inimigos-prolongado",
+    "name": "Detectar Inimigos, Prolongado",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área estendida"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "detectar-magia",
+    "name": "Detectar Magia",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "detectar-magia-prolongado",
+    "name": "Detectar Magia, Prolongado",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área estendida"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "sonda-mental",
+    "name": "Sonda Mental",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "direcional"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "detectar-vida",
+    "name": "Detectar Vida",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "detectar-vida-prolongado",
+    "name": "Detectar Vida, Prolongado",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "área estendida"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "elo-mental",
+    "name": "Elo Mental",
+    "category": "deteccao",
+    "tags": [
+      "ativo",
+      "psíquico"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "sentido-de-combate",
+    "name": "Sentido de Combate",
+    "category": "deteccao",
+    "tags": [
+      "passivo",
+      "psíquico"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "abafar",
+    "name": "Abafar",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "sentido único",
+      "área"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "silenciar",
+    "name": "Silenciar",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "sentido único",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "agonia",
+    "name": "Agonia",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "sentido único"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 4"
+  },
+  {
+    "id": "agonia-em-massa",
+    "name": "Agonia em Massa",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "sentido único"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "confusao",
+    "name": "Confusão",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "confusao-em-massa",
+    "name": "Confusão em Massa",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos",
+      "área"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "caos",
+    "name": "Caos",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "mundo-caotico",
+    "name": "Mundo Caótico",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "entretenimento",
+    "name": "Entretenimento",
+    "category": "ilusao",
+    "tags": [
+      "óbvio",
+      "multissentidos",
+      "área"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "entretenimento-de-trideo",
+    "name": "Entretenimento de Trídeo",
+    "category": "ilusao",
+    "tags": [
+      "óbvio",
+      "multissentidos",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "fantasma",
+    "name": "Fantasma",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos",
+      "área"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "fantasma-de-trideo",
+    "name": "Fantasma de Trídeo",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "furtividade",
+    "name": "Furtividade",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "sentido único"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "insetos",
+    "name": "Insetos",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "enxame",
+    "name": "Enxame",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "invisibilidade",
+    "name": "Invisibilidade",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "sentido único"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "invisibilidade-melhorada",
+    "name": "Invisibilidade Melhorada",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "sentido único"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "mascara",
+    "name": "Máscara",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "mascara-fisica",
+    "name": "Máscara Física",
+    "category": "ilusao",
+    "tags": [
+      "realista",
+      "multissentidos"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "animar",
+    "name": "Animar",
+    "category": "manipulacao",
+    "tags": [
+      "físico"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "animar-em-massa",
+    "name": "Animar em Massa",
+    "category": "manipulacao",
+    "tags": [
+      "físico",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P + 1"
+  },
+  {
+    "id": "armadura",
+    "name": "Armadura",
+    "category": "manipulacao",
+    "tags": [
+      "físico"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "arremessar",
+    "name": "Arremessar",
+    "category": "manipulacao",
+    "tags": [
+      "físico",
+      "dano"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "I",
+    "drain": "P – 2"
+  },
+  {
+    "id": "barreira-de-mana",
+    "name": "Barreira de Mana",
+    "category": "manipulacao",
+    "tags": [
+      "ambiental",
+      "área"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "barreira-fisica",
+    "name": "Barreira Física",
+    "category": "manipulacao",
+    "tags": [
+      "ambiental",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "camada-de-gelo",
+    "name": "Camada de Gelo",
+    "category": "manipulacao",
+    "tags": [
+      "ambiental",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "I",
+    "drain": "P"
+  },
+  {
+    "id": "controlar-acoes",
+    "name": "Controlar Ações",
+    "category": "manipulacao",
+    "tags": [
+      "mental"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "controle-de-multidao",
+    "name": "Controle de Multidão",
+    "category": "manipulacao",
+    "tags": [
+      "mental",
+      "área"
+    ],
+    "type": "M",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P + 1"
+  },
+  {
+    "id": "controlar-pensamentos",
+    "name": "Controlar Pensamentos",
+    "category": "manipulacao",
+    "tags": [
+      "mental"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 1"
+  },
+  {
+    "id": "mente-da-multidao",
+    "name": "Mente da Multidão",
+    "category": "manipulacao",
+    "tags": [
+      "mental",
+      "área"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P + 1"
+  },
+  {
+    "id": "dedos-magicos",
+    "name": "Dedos Mágicos",
+    "category": "manipulacao",
+    "tags": [
+      "físico"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "inflamar",
+    "name": "Inflamar",
+    "category": "manipulacao",
+    "tags": [
+      "físico"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 1"
+  },
+  {
+    "id": "influencia",
+    "name": "Influência",
+    "category": "manipulacao",
+    "tags": [
+      "mental"
+    ],
+    "type": "M",
+    "range": "LDV",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 1"
+  },
+  {
+    "id": "levitacao",
+    "name": "Levitação",
+    "category": "manipulacao",
+    "tags": [
+      "físico"
+    ],
+    "type": "F",
+    "range": "LDV",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "luz",
+    "name": "Luz",
+    "category": "manipulacao",
+    "tags": [
+      "ambiental",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 4"
+  },
+  {
+    "id": "poltergeist",
+    "name": "Poltergeist",
+    "category": "manipulacao",
+    "tags": [
+      "ambiental",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "sombra",
+    "name": "Sombra",
+    "category": "manipulacao",
+    "tags": [
+      "ambiental",
+      "área"
+    ],
+    "type": "F",
+    "range": "LDV (A)",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "antidoto",
+    "name": "Antídoto",
+    "category": "saude",
+    "tags": [],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 3"
+  },
+  {
+    "id": "aumentar-atributo",
+    "name": "Aumentar [Atributo]",
+    "category": "saude",
+    "tags": [
+      "essência"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 3"
+  },
+  {
+    "id": "aumentar-reflexos",
+    "name": "Aumentar Reflexos",
+    "category": "saude",
+    "tags": [
+      "essência"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P"
+  },
+  {
+    "id": "cura",
+    "name": "Cura",
+    "category": "saude",
+    "tags": [
+      "essência"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 4"
+  },
+  {
+    "id": "curar-doenca",
+    "name": "Curar Doença",
+    "category": "saude",
+    "tags": [
+      "essência"
+    ],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 4"
+  },
+  {
+    "id": "desintoxicacao",
+    "name": "Desintoxicação",
+    "category": "saude",
+    "tags": [],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 6"
+  },
+  {
+    "id": "estabilizar",
+    "name": "Estabilizar",
+    "category": "saude",
+    "tags": [],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 4"
+  },
+  {
+    "id": "oxigenar",
+    "name": "Oxigenar",
+    "category": "saude",
+    "tags": [],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 5"
+  },
+  {
+    "id": "profilaxia",
+    "name": "Profilaxia",
+    "category": "saude",
+    "tags": [],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 4"
+  },
+  {
+    "id": "reduzir-atributo",
+    "name": "Reduzir [Atributo]",
+    "category": "saude",
+    "tags": [
+      "essência"
+    ],
+    "type": "F",
+    "range": "T",
+    "damage": null,
+    "duration": "S",
+    "drain": "P – 2"
+  },
+  {
+    "id": "resistir-a-dor",
+    "name": "Resistir à Dor",
+    "category": "saude",
+    "tags": [],
+    "type": "M",
+    "range": "T",
+    "damage": null,
+    "duration": "P",
+    "drain": "P – 4"
+  }
+]

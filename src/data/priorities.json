@@ -1,0 +1,183 @@
+{
+  "A": {
+    "metatypes": {
+      "human": 9,
+      "elf": 8,
+      "dwarf": 7,
+      "ork": 7,
+      "troll": 5
+    },
+    "attributes": 24,
+    "magic": {
+      "mage": {
+        "magic": 6,
+        "skills": {
+          "count": 2,
+          "rating": 5,
+          "kind": "magic"
+        },
+        "spells": 10
+      },
+      "mysticAdept": {
+        "magic": 6,
+        "skills": {
+          "count": 2,
+          "rating": 5,
+          "kind": "magic"
+        },
+        "spells": 10
+      },
+      "technomancer": {
+        "resonance": 6,
+        "skills": {
+          "count": 2,
+          "rating": 5,
+          "kind": "resonance"
+        },
+        "complexForms": 5
+      }
+    },
+    "skills": {
+      "points": 46,
+      "groups": 10
+    },
+    "resources": 450000
+  },
+  "B": {
+    "metatypes": {
+      "human": 7,
+      "elf": 6,
+      "dwarf": 4,
+      "ork": 4,
+      "troll": 0
+    },
+    "attributes": 20,
+    "magic": {
+      "mage": {
+        "magic": 4,
+        "skills": {
+          "count": 2,
+          "rating": 4,
+          "kind": "magic"
+        },
+        "spells": 7
+      },
+      "mysticAdept": {
+        "magic": 4,
+        "skills": {
+          "count": 2,
+          "rating": 4,
+          "kind": "magic"
+        },
+        "spells": 7
+      },
+      "technomancer": {
+        "resonance": 4,
+        "skills": {
+          "count": 2,
+          "rating": 4,
+          "kind": "resonance"
+        },
+        "complexForms": 2
+      },
+      "adept": {
+        "magic": 6,
+        "skills": {
+          "count": 1,
+          "rating": 4,
+          "kind": "active"
+        }
+      },
+      "aspected": {
+        "magic": 5,
+        "skillGroup": {
+          "rating": 4
+        }
+      }
+    },
+    "skills": {
+      "points": 36,
+      "groups": 5
+    },
+    "resources": 275000
+  },
+  "C": {
+    "metatypes": {
+      "human": 5,
+      "elf": 3,
+      "dwarf": 1,
+      "ork": 0
+    },
+    "attributes": 16,
+    "magic": {
+      "mage": {
+        "magic": 3,
+        "skills": null,
+        "spells": 5
+      },
+      "mysticAdept": {
+        "magic": 3,
+        "skills": null,
+        "spells": 5
+      },
+      "technomancer": {
+        "resonance": 3,
+        "skills": null,
+        "complexForms": 1
+      },
+      "adept": {
+        "magic": 4,
+        "skills": {
+          "count": 1,
+          "rating": 2,
+          "kind": "active"
+        }
+      },
+      "aspected": {
+        "magic": 3,
+        "skillGroup": {
+          "rating": 2
+        }
+      }
+    },
+    "skills": {
+      "points": 28,
+      "groups": 2
+    },
+    "resources": 140000
+  },
+  "D": {
+    "metatypes": {
+      "human": 3,
+      "elf": 0
+    },
+    "attributes": 14,
+    "magic": {
+      "adept": {
+        "magic": 2,
+        "skills": null
+      },
+      "aspected": {
+        "magic": 2,
+        "skillGroup": null
+      }
+    },
+    "skills": {
+      "points": 22,
+      "groups": 0
+    },
+    "resources": 50000
+  },
+  "E": {
+    "metatypes": {
+      "human": 1
+    },
+    "attributes": 12,
+    "magic": {},
+    "skills": {
+      "points": 18,
+      "groups": 0
+    },
+    "resources": 6000
+  }
+}
